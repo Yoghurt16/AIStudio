@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cozy Nest — Bedroom & Manchester</title>
+<meta name="description" content="Premium bedding, sheets, blankets and bedroom manchester. Shop Cozy Nest for quality comfort."/>
+<style>
+  :root {
+    --primary: #3d2b1f;
+    --accent: #c9956c;
+    --bg: #faf8f5;
+    --white: #ffffff;
+    --light: #f0ebe4;
+    --text: #2c2c2c;
+    --muted: #888;
+    --radius: 12px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    --transition: 0.2s ease;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* ── NAV ── */
+  nav{background:var(--white);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-size:1.4rem;font-weight:700;color:var(--primary);letter-spacing:-0.5px;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;font-size:0.95rem;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .cart-btn{position:relative;background:var(--primary);color:#fff;border:none;border-radius:50px;padding:8px 20px;cursor:pointer;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:background var(--transition);}
+  .cart-btn:hover{background:var(--accent);}
+  .cart-count{background:var(--accent);color:#fff;border-radius:50%;width:20px;height:20px;font-size:0.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .hamburger span{width:24px;height:2px;background:var(--primary);border-radius:2px;transition:var(--transition);}
+
+  /* ── HERO ── */
+  .hero{background:linear-gradient(135deg,#3d2b1f 0%,#6b4c38 100%);color:#fff;padding:80px 20px;text-align:center;}
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;margin-bottom:16px;line-height:1.2;}
+  .hero p{font-size:1.1rem;opacity:0.85;max-width:500px;margin:0 auto 32px;}
+  .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:opacity var(--transition);}
+  .btn-primary:hover{opacity:0.88;}
+  .btn-outline{background:transparent;color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;border:2px solid rgba(255,255,255,0.5);cursor:pointer;transition:border-color var(--transition);}
+  .btn-outline:hover{border-color:#fff;}
+
+  /* ── CATEGORIES ── */
+  .section{max-width:1200px;margin:0 auto;padding:60px 20px;}
+  .section-title{font-size:1.6rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
+  .section-sub{color:var(--muted);margin-bottom:36px;}
+  .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
+  .cat-card{background:var(--white);border-radius:var(--radius);padding:28px 16px;text-align:center;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);border:2px solid transparent;}
+  .cat-card:hover,.cat-card.active{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent);}
+  .cat-icon{font-size:2.2rem;margin-bottom:10px;}
+  .cat-card h3{font-size:0.95rem;font-weight:600;color:var(--primary);}
+
+  /* ── PRODUCTS ── */
+  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
+  .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition);}
+  .product-card:hover{transform:translateY(-6px);}
+  .product-img{width:100%;height:220px;object-fit:cover;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:4rem;}
+  .product-info{padding:16px;}
+  .product-badge{display:inline-block;background:var(--light);color:var(--accent);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-bottom:8px;text-transform:uppercase;}
+  .product-name{font-size:1rem;font-weight:600;color:var(--primary);margin-bottom:4px;}
+  .product-desc{font-size:0.85rem;color:var(--muted);margin-bottom:12px;}
+  .product-footer{display:flex;align-items:center;justify-content:space-between;}
+  .product-price{font-size:1.2rem;font-weight:700;color:var(--primary);}
+  .add-to-cart{background:var(--primary);color:#fff;border:none;border-radius:50px;padding:8px 18px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background var(--transition);}
+  .add-to-cart:hover{background:var(--accent);}
+
+  /* ── TRUST STRIP ── */
+  .trust{background:var(--light);padding:40px 20px;}
+  .trust-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;text-align:center;}
+  .trust-item .icon{font-size:2rem;margin-bottom:8px;}
+  .trust-item h4{font-size:0.95rem;font-weight:700;color:var(--primary);}
+  .trust-item p{font-size:0.82rem;color:var(--muted);}
+
+  /* ── CART SIDEBAR ── */
+  .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;}
+  .cart-overlay.open{display:block;}
+  .cart-sidebar{position:fixed;top:0;right:-420px;width:min(420px,100vw);height:100%;background:var(--white);z-index:201;transition:right 0.3s ease;display:flex;flex-direction:column;}
+  .cart-sidebar.open{right:0;}
+  .cart-header{padding:20px 24px;border-bottom:1px solid var(--light);display:flex;align-items:center;justify-content:space-between;}
+  .cart-header h2{font-size:1.2rem;font-weight:700;color:var(--primary);}
+  .close-cart{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);}
+  .cart-items{flex:1;overflow-y:auto;padding:20px 24px;}
+  .cart-empty{text-align:center;color:var(--muted);margin-top:60px;font-size:1rem;}
+  .cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--light);}
+  .cart-item-img{width:64px;height:64px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;}
+  .cart-item-info{flex:1;}
+  .cart-item-name{font-size:0.9rem;font-weight:600;color:var(--primary);}
+  .cart-item-price{font-size:0.85rem;color:var(--muted);}
+  .cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:8px;}
+  .qty-btn{background:var(--light);border:none;border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:1rem;font-weight:700;}
+  .qty-num{font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;}
+  .remove-item{background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.8rem;margin-left:auto;align-self:flex-start;}
+  .cart-footer{padding:20px 24px;border-top:1px solid var(--light);}
+  .cart-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:16px;}
+  .checkout-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:16px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity var(--transition);}
+  .checkout-btn:hover{opacity:0.88;}
+
+  /* ── CHECKOUT MODAL ── */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:var(--white);border-radius:var(--radius);width:100%;max-width:520px;max-height:90vh;overflow-y:auto;}
+  .modal-header{padding:24px 28px 0;display:flex;justify-content:space-between;align-items:center;}
+  .modal-header h2{font-size:1.3rem;font-weight:700;color:var(--primary);}
+  .modal-body{padding:24px 28px;}
+  .form-section{margin-bottom:24px;}
+  .form-section h3{font-size:0.9rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--light);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .form-group{margin-bottom:14px;}
+  .form-group label{display:block;font-size:0.85rem;font-weight:600;color:var(--primary);margin-bottom:6px;}
+  .form-group input,.form-group select{width:100%;padding:10px 14px;border:1.5px solid #e0d8d0;border-radius:8px;font-size:0.95rem;background:var(--bg);transition:border-color var(--transition);}
+  .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--accent);}
+  .card-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;}
+  .stripe-badge{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--muted);margin-bottom:16px;}
+  .stripe-badge svg{width:40px;}
+  .order-summary{background:var(--light);border-radius:8px;padding:16px;margin-bottom:20px;}
+  .order-line{display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:6px;}
+  .order-line.total{font-weight:700;font-size:1rem;border-top:1px solid #ddd;padding-top:8px;margin-top:8px;}
+  .place-order-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:16px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity var(--transition);}
+  .place-order-btn:hover{opacity:0.88;}
+
+  /* ── SUCCESS ── */
+  .success-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400;align-items:center;justify-content:center;}
+  .success-overlay.open{display:flex;}
+  .success-box{background:var(--white);border-radius:var(--radius);padding:48px 36px;text-align:center;max-width:400px;width:90%;}
+  .success-icon{font-size:4rem;margin-bottom:16px;}
+  .success-box h2{font-size:1.4rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
+  .success-box p{color:var(--muted);margin-bottom:24px;}
+  .success-box button{background:var(--accent);color:#fff;border:none;border-radius:50px;padding:12px 32px;font-size:1rem;font-weight:600;cursor:pointer;}
+
+  /* ── FOOTER ── */
+  footer{background:var(--primary);color:#fff;padding:48px 20px 24px;}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;margin-bottom:32px;}
+  .footer-brand p{font-size:0.85rem;opacity:0.7;margin-top:8px;max-width:220px;}
+  .footer-col h4{font-size:0.9rem;font-weight:700;margin-bottom:14px;color:var(--accent);}
+  .footer-col a{display:block;font-size:0.85rem;opacity:0.7;margin-bottom:8px;transition:opacity var(--transition);}
+  .footer-col a:hover{opacity:1;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem;opacity:0.5;}
+
+  /* ── TOAST ── */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--primary);color:#fff;padding:12px 24px;border-radius:50px;font-size:0.9rem;font-weight:600;z-index:500;transition:transform 0.3s ease;white-space:nowrap;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  /* ── MOBILE ── */
+  @media(max-width:768px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--white);flex-direction:column;padding:16px 20px;gap:16px;box-shadow:var(--shadow);}
+    .nav-links.open{display:flex;}
+    .hamburger{display:flex;}
+    .hero{padding:60px 20px;}
+    .form-row{grid-template-columns:1fr;}
+    .card-row{grid-template-columns:1fr 1fr;}
+    .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+    .product-img{height:160px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Cozy<span>Nest</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Sleep Better,<br/>Live Cosier 🛏️</h1>
+  <p>Premium sheets, blankets, pillowcases and bedroom manchester — crafted for comfort.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+    <button class="btn-outline" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Browse Categories</button>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="icon">🚚</div><h4>Free Shipping</h4><p>On all orders over $80</p></div>
+    <div class="trust-item"><div class="icon">🔄</div><h4>Easy Returns</h4><p>30-day hassle-free returns</p></div>
+    <div class="trust-item"><div class="icon">🔒</div><h4>Secure Payment</h4><p>Powered by Stripe</p></div>
+    <div class="trust-item"><div class="icon">⭐</div><h4>Premium Quality</h4><p>100% certified materials</p></div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+  <div class="section-title">Shop by Category</div>
+  <div class="section-sub">Find exactly what you need</div>
+  <div class="categories">
+    <div class="cat-card active" onclick="filterCat('all',this)"><div class="cat-icon">🏠</div><h3>All Products</h3></div>
+    <div class="cat-card" onclick="filterCat('sheets',this)"><div class="cat-icon">🛏️</div><h3>Bed Sheets</h3></div>
+    <div class="cat-card" onclick="filterCat('blankets',this)"><div class="cat-icon">🧣</div><h3>Blankets</h3></div>
+    <div class="cat-card" onclick="filterCat('pillows',this)"><div class="cat-icon">😴</div><h3>Pillows & Cases</h3></div>
+    <div class="cat-card" onclick="filterCat('quilts',this)"><div class="cat-icon">🌿</div><h3>Quilts & Doona</h3></div>
+    <div class="cat-card" onclick="filterCat('towels',this)"><div class="cat-icon">🛁</div><h3>Towels</h3></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="shop" style="padding-top:0;">
+  <div class="section-title">Our Products</div>
+  <div class="section-sub">Quality comfort for every bedroom</div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="color:#fff;">Cozy<span>Nest</span></div>
+      <p>Your destination for premium bedroom manchester and comfort essentials.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">Bed Sheets</a>
+      <a href="#">Blankets</a>
+      <a href="#">Pillows</a>
+      <a href="#">Quilts</a>
+      <a href="#">Towels</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#">Shipping Info</a>
+      <a href="#">Returns</a>
+      <a href="#">Size Guide</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">hello@cozynest.com.au</a>
+      <a href="#">1300 COZY NEST</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 CozyNest. All rights reserved. ABN 00 000 000 000</div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <button class="close-cart" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty 😴</div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Checkout 🔒</h2>
+      <button class="close-cart" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="order-summary" id="orderSummary"></div>
+
+      <form id="checkoutForm" onsubmit="placeOrder(event)">
+        <div class="form-section">
+          <h3>Contact</h3>
+          <div class="form-group"><label>Full Name *</label><input type="text" id="fname" required placeholder="Jane Smith"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>Email *</label><input type="email" id="femail" required placeholder="jane@email.com"/></div>
+            <div class="form-group"><label>Phone</label><input type="tel" id="fphone" placeholder="04XX XXX XXX"/></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h3>Shipping Address</h3>
+          <div class="form-group"><label>Street Address *</label><input type="text" id="faddr" required placeholder="123 Main Street"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>City *</label><input type="text" id="fcity" required placeholder="Melbourne"/></div>
+            <div class="form-group"><label>State *</label>
+              <select id="fstate" required>
+                <option value="">Select...</option>
+                <option>VIC</option><option>NSW</option><option>QLD</option>
+                <option>WA</option><option>SA</option><option>TAS</option>
+                <option>ACT</option><option>NT</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Postcode *</label><input type="text" id="fpost" required placeholder="3000" maxlength="4"/></div>
+            <div class="form-group"><label>Country</label><input type="text" value="Australia" readonly/></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h3>Payment</h3>
+          <div class="stripe-badge">🔒 Secured by Stripe — your card details are encrypted</div>
+          <div class="form-group"><label>Card Number *</label><input type="text" id="fcardnum" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"/></div>
+          <div class="card-row">
+            <div class="form-group"><label>Name on Card *</label><input type="text" id="fcardname" required placeholder="Jane Smith"/></div>
+            <div class="form-group"><label>Expiry *</label><input type="text" id="fexpiry" required placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"/></div>
+            <div class="form-group"><label>CVV *</label><input type="text" id="fcvv" required placeholder="123" maxlength="4"/></div>
+          </div>
+        </div>
+        <button type="submit" class="place-order-btn" id="placeOrderBtn">Place Order & Pay →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h2>Order Placed!</h2>
+    <p>Thank you! Your order has been received. A confirmation email will be sent shortly.</p>
+    <p id="successOrderId" style="font-weight:700;font-size:1.1rem;color:#3d2b1f;margin-bottom:20px;"></p>
+    <button onclick="closeSuccess()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── PRODUCT DATA (easy to replace with API/DB) ──
+const PRODUCTS = [
+  {id:1, name:"Egyptian Cotton Sheet Set", cat:"sheets", price:89.95, badge:"Bestseller", emoji:"🛏️", desc:"400 thread count, silky smooth finish. Queen/King/Double."},
+  {id:2, name:"Bamboo Sheet Set", cat:"sheets", price:79.95, badge:"Eco", emoji:"🌿", desc:"100% organic bamboo, breathable and hypoallergenic."},
+  {id:3, name:"Fitted Sheet — King", cat:"sheets", price:49.95, badge:"", emoji:"📐", desc:"Deep pocket fitted sheet, elasticated all around."},
+  {id:4, name:"Luxury Sherpa Blanket", cat:"blankets", price:69.95, badge:"New", emoji:"🧣", desc:"Ultra-soft sherpa fleece, perfect for cool nights."},
+  {id:5, name:"Waffle Knit Throw", cat:"blankets", price:54.95, badge:"", emoji:"🍫", desc:"Stylish waffle knit throw, 100% cotton."},
+  {id:6, name:"Weighted Blanket 7kg", cat:"blankets", price:119.95, badge:"Popular", emoji:"⚖️", desc:"Therapeutic weighted blanket for deeper sleep."},
+  {id:7, name:"Memory Foam Pillow", cat:"pillows", price:59.95, badge:"Bestseller", emoji:"😴", desc:"Contour memory foam, medium-firm support."},
+  {id:8, name:"Pillowcase Set (2 pack)", cat:"pillows", price:29.95, badge:"", emoji:"🎁", desc:"Standard & king size, 300 thread count cotton."},
+  {id:9, name:"Duck Down Pillow", cat:"pillows", price:74.95, badge:"Premium", emoji:"🪶", desc:"Soft duck down fill, naturally breathable."},
+  {id:10, name:"All-Season Quilt 400GSM", cat:"quilts", price:99.95, badge:"Bestseller", emoji:"🌸", desc:"Microfibre fill, suitable for all seasons."},
+  {id:11, name:"Winter Goose Down Doona", cat:"quilts", price:189.95, badge:"Premium", emoji:"❄️", desc:"700GSM goose down, supremely warm."},
+  {id:12, name:"Summer Bamboo Quilt", cat:"quilts", price:89.95, badge:"New", emoji:"☀️", desc:"Lightweight bamboo fill, ideal for warm months."},
+  {id:13, name:"Bath Towel Set (4 pack)", cat:"towels", price:64.95, badge:"", emoji:"🛁", desc:"600GSM Egyptian cotton, ultra absorbent."},
+  {id:14, name:"Luxury Hand Towel Set", cat:"towels", price:39.95, badge:"", emoji:"🤲", desc:"Soft and quick-dry, 500GSM."},
+  {id:15, name:"Beach Towel — Oversized", cat:"towels", price:44.95, badge:"Summer", emoji:"🏖️", desc:"180x100cm, sand-free microfibre."},
+  {id:16, name:"Bed Runner & Cushion Set", cat:"sheets", price:55.95, badge:"New", emoji:"💛", desc:"Decorative bed runner with 2 matching cushion covers."},
+];
+
+let cart = JSON.parse(localStorage.getItem('cn_cart') || '[]');
+let currentFilter = 'all';
+
+// ── RENDER PRODUCTS ──
+function renderProducts(filter){
+  const grid = document.getElementById('productsGrid');
+  const filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-img">${p.emoji}</div>
+      <div class="product-info">
+        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <span class="product-price">$${p.price.toFixed(2)}</span>
+          <button class="add-to-cart" onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCat(cat, el){
+  currentFilter = cat;
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts(cat);
+}
+
+// ── CART ──
+function addToCart(id){
+  const product = PRODUCTS.find(p => p.id === id);
+  const existing = cart.find(i => i.id === id);
+  if(existing) existing.qty++;
+  else cart.push({...product, qty:1});
+  saveCart();
+  showToast(`✓ ${product.name} added to cart`);
+  renderCart();
+}
+
+function saveCart(){
+  localStorage.setItem('cn_cart', JSON.stringify(cart));
+  document.getElementById('cartCount').textContent = cart.reduce((s,i)=>s+i.qty,0);
+}
+
+function renderCart(){
+  const container = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if(cart.length === 0){
+    container.innerHTML = '<div class="cart-empty">Your cart is empty 😴</div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  const total = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+  container.innerHTML = cart.map(i => `
+    <div class="cart-item">
+      <div class="cart-item-img">${i.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-price">$${i.price.toFixed(2)} each</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeItem(${i.id})">✕ Remove</button>
+    </div>
+  `).join('');
+}
+
+function changeQty(id, delta){
+  const item = cart.find(i=>i.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0) cart = cart.filter(i=>i.id!==id);
+  saveCart(); renderCart();
+}
+
+function removeItem(id){
+  cart = cart.filter(i=>i.id!==id);
+  saveCart(); renderCart();
+}
+
+function openCart(){ document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart(){ document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+// ── CHECKOUT ──
+function openCheckout(){
+  closeCart();
+  const total = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  const shipping = total >= 80 ? 0 : 9.95;
+  const summary = document.getElementById('orderSummary');
+  summary.innerHTML = `
+    ${cart.map(i=>`<div class="order-line"><span>${i.name} × ${i.qty}</span><span>$${(i.price*i.qty).toFixed(2)}</span></div>`).join('')}
+    <div class="order-line"><span>Shipping</span><span>${shipping===0?'FREE':'$'+shipping.toFixed(2)}</span></div>
+    <div class="order-line total"><span>Total (AUD)</span><span>$${(total+shipping).toFixed(2)}</span></div>
+  `;
+  document.getElementById('checkoutModal').classList.add('open');
+}
+
+function closeCheckout(){ document.getElementById('checkoutModal').classList.remove('open'); }
+
+function formatCard(el){
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(\d{4})/g,'$1 ').trim();
+}
+function formatExpiry(el){
+  let v = el.value.replace(/\D/g,'');
+  if(v.length>=2) v = v.substring(0,2)+'/'+v.substring(2,4);
+  el.value = v;
+}
+
+function placeOrder(e){
+  e.preventDefault();
+  const btn = document.getElementById('placeOrderBtn');
+  btn.textContent = 'Processing...'; btn.disabled = true;
+
+  // ── DATABASE HOOK (replace with your API endpoint) ──
+  const orderData = {
+    orderId: 'CN-' + Date.now(),
+    timestamp: new Date().toISOString(),
+    customer: {
+      name: document.getElementById('fname').value,
+      email: document.getElementById('femail').value,
+      phone: document.getElementById('fphone').value,
+      address: {
+        street: document.getElementById('faddr').value,
+        city: document.getElementById('fcity').value,
+        state: document.getElementById('fstate').value,
+        postcode: document.getElementById('fpost').value,
+        country: 'Australia'
+      }
+    },
+    items: cart.map(i=>({id:i.id, name:i.name, price:i.price, qty:i.qty})),
+    total: cart.reduce((s,i)=>s+(i.price*i.qty),0),
+    payment: { method: 'stripe', status: 'pending' }
+  };
+
+  // TODO: Replace with your backend API call, e.g.:
+  // fetch('/api/orders', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(orderData) })
+
+  console.log('ORDER DATA (connect to DB):', JSON.stringify(orderData, null, 2));
+
+  setTimeout(()=>{
+    closeCheckout();
+    document.getElementById('successOrderId').textContent = `Order ID: ${orderData.orderId}`;
+    document.getElementById('successOverlay').classList.add('open');
+    cart = []; saveCart(); renderCart();
+    btn.textContent = 'Place Order & Pay →'; btn.disabled = false;
+  }, 1800);
+}
+
+function closeSuccess(){ document.getElementById('successOverlay').classList.remove('open'); }
+
+// ── NAV MOBILE ──
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ── TOAST ──
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// ── INIT ──
+renderProducts('all');
+saveCart();
+renderCart();
+</script>
+</body>
+</html>
