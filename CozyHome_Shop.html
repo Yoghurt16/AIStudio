@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cozy Home — Premium Bedroom & Manchester</title>
+<meta name="description" content="Premium bedding, sheets, blankets and bedroom manchester. Shop Cozy Home for quality comfort. 澳大利亚优质床品专卖店"/>
+<style>
+  :root {
+    --primary: #3d2b1f;
+    --accent: #c9956c;
+    --bg: #faf8f5;
+    --white: #ffffff;
+    --light: #f0ebe4;
+    --text: #2c2c2c;
+    --muted: #888;
+    --radius: 12px;
+    --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    --transition: 0.2s ease;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* ── CURRENCY BAR ── */
+  .currency-bar{background:var(--primary);color:#fff;padding:6px 20px;font-size:0.78rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .currency-bar .rate-info{opacity:0.8;display:flex;align-items:center;gap:6px;}
+  .currency-bar .rate-info .live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;display:inline-block;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+  .currency-toggle{display:flex;background:rgba(255,255,255,0.15);border-radius:50px;overflow:hidden;}
+  .currency-toggle button{background:none;border:none;color:#fff;padding:4px 14px;font-size:0.78rem;cursor:pointer;font-weight:600;transition:background var(--transition);}
+  .currency-toggle button.active{background:var(--accent);}
+
+  /* ── NAV ── */
+  nav{background:var(--white);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-size:1.4rem;font-weight:700;color:var(--primary);letter-spacing:-0.5px;}
+  .logo span{color:var(--accent);}
+  .logo-sub{font-size:0.65rem;color:var(--muted);display:block;font-weight:400;letter-spacing:1px;text-transform:uppercase;margin-top:-4px;}
+  .nav-links{display:flex;gap:28px;font-size:0.95rem;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .cart-btn{position:relative;background:var(--primary);color:#fff;border:none;border-radius:50px;padding:8px 20px;cursor:pointer;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:background var(--transition);}
+  .cart-btn:hover{background:var(--accent);}
+  .cart-count{background:var(--accent);color:#fff;border-radius:50%;width:20px;height:20px;font-size:0.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .hamburger span{width:24px;height:2px;background:var(--primary);border-radius:2px;}
+
+  /* ── HERO ── */
+  .hero{background:linear-gradient(135deg,#3d2b1f 0%,#6b4c38 100%);color:#fff;padding:80px 20px;text-align:center;}
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;margin-bottom:8px;line-height:1.2;}
+  .hero h1 .zh{display:block;font-size:clamp(1rem,2.5vw,1.5rem);font-weight:400;opacity:0.75;margin-top:6px;}
+  .hero p{font-size:1.1rem;opacity:0.85;max-width:500px;margin:0 auto 32px;}
+  .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:opacity var(--transition);}
+  .btn-primary:hover{opacity:0.88;}
+  .btn-outline{background:transparent;color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;border:2px solid rgba(255,255,255,0.5);cursor:pointer;transition:border-color var(--transition);}
+  .btn-outline:hover{border-color:#fff;}
+
+  /* ── EXCHANGE RATE BANNER ── */
+  .rate-banner{background:linear-gradient(90deg,#fff7ed,#fff);border-bottom:1px solid #f0ebe4;padding:10px 20px;text-align:center;font-size:0.82rem;color:var(--primary);}
+  .rate-banner strong{color:var(--accent);}
+  .rate-banner .rate-source{font-size:0.72rem;color:var(--muted);margin-left:8px;}
+
+  /* ── SECTIONS ── */
+  .section{max-width:1200px;margin:0 auto;padding:60px 20px;}
+  .section-title{font-size:1.6rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
+  .section-sub{color:var(--muted);margin-bottom:36px;}
+
+  /* ── CATEGORIES ── */
+  .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;}
+  .cat-card{background:var(--white);border-radius:var(--radius);padding:24px 16px;text-align:center;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);border:2px solid transparent;}
+  .cat-card:hover,.cat-card.active{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent);}
+  .cat-icon{font-size:2.2rem;margin-bottom:10px;}
+  .cat-card h3{font-size:0.9rem;font-weight:600;color:var(--primary);}
+  .cat-card small{font-size:0.72rem;color:var(--muted);}
+
+  /* ── PRODUCTS ── */
+  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
+  .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition);}
+  .product-card:hover{transform:translateY(-6px);}
+  .product-img{width:100%;height:200px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:4rem;}
+  .product-info{padding:16px;}
+  .product-badge{display:inline-block;background:var(--light);color:var(--accent);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-bottom:8px;text-transform:uppercase;}
+  .product-name{font-size:1rem;font-weight:600;color:var(--primary);margin-bottom:2px;}
+  .product-name-zh{font-size:0.8rem;color:var(--muted);margin-bottom:6px;}
+  .product-desc{font-size:0.83rem;color:var(--muted);margin-bottom:12px;}
+  .product-footer{display:flex;align-items:center;justify-content:space-between;}
+  .product-price{display:flex;flex-direction:column;}
+  .price-aud{font-size:1.15rem;font-weight:700;color:var(--primary);}
+  .price-cny{font-size:0.78rem;color:var(--muted);font-weight:500;}
+  .add-to-cart{background:var(--primary);color:#fff;border:none;border-radius:50px;padding:8px 18px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background var(--transition);}
+  .add-to-cart:hover{background:var(--accent);}
+
+  /* ── TRUST ── */
+  .trust{background:var(--light);padding:40px 20px;}
+  .trust-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;text-align:center;}
+  .trust-item .icon{font-size:2rem;margin-bottom:8px;}
+  .trust-item h4{font-size:0.95rem;font-weight:700;color:var(--primary);}
+  .trust-item p{font-size:0.82rem;color:var(--muted);}
+
+  /* ── CART SIDEBAR ── */
+  .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;}
+  .cart-overlay.open{display:block;}
+  .cart-sidebar{position:fixed;top:0;right:-420px;width:min(420px,100vw);height:100%;background:var(--white);z-index:201;transition:right 0.3s ease;display:flex;flex-direction:column;}
+  .cart-sidebar.open{right:0;}
+  .cart-header{padding:20px 24px;border-bottom:1px solid var(--light);display:flex;align-items:center;justify-content:space-between;}
+  .cart-header h2{font-size:1.2rem;font-weight:700;color:var(--primary);}
+  .close-cart{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);}
+  .cart-items{flex:1;overflow-y:auto;padding:20px 24px;}
+  .cart-empty{text-align:center;color:var(--muted);margin-top:60px;}
+  .cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--light);}
+  .cart-item-img{width:64px;height:64px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;}
+  .cart-item-info{flex:1;}
+  .cart-item-name{font-size:0.9rem;font-weight:600;color:var(--primary);}
+  .cart-item-price{font-size:0.82rem;color:var(--muted);}
+  .cart-item-price .cny{font-size:0.75rem;color:#c9956c;}
+  .cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:8px;}
+  .qty-btn{background:var(--light);border:none;border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:1rem;font-weight:700;}
+  .qty-num{font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;}
+  .remove-item{background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.8rem;margin-left:auto;align-self:flex-start;}
+  .cart-footer{padding:20px 24px;border-top:1px solid var(--light);}
+  .cart-total-row{display:flex;justify-content:space-between;margin-bottom:4px;}
+  .cart-total-aud{font-size:1.1rem;font-weight:700;color:var(--primary);}
+  .cart-total-cny{font-size:0.85rem;color:var(--muted);margin-bottom:14px;}
+  .checkout-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:16px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity var(--transition);}
+  .checkout-btn:hover{opacity:0.88;}
+
+  /* ── CHECKOUT MODAL ── */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:var(--white);border-radius:var(--radius);width:100%;max-width:540px;max-height:92vh;overflow-y:auto;}
+  .modal-header{padding:24px 28px 0;display:flex;justify-content:space-between;align-items:center;}
+  .modal-header h2{font-size:1.3rem;font-weight:700;color:var(--primary);}
+  .modal-body{padding:24px 28px;}
+  .form-section{margin-bottom:24px;}
+  .form-section h3{font-size:0.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--light);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .form-group{margin-bottom:14px;}
+  .form-group label{display:block;font-size:0.85rem;font-weight:600;color:var(--primary);margin-bottom:6px;}
+  .form-group input,.form-group select{width:100%;padding:10px 14px;border:1.5px solid #e0d8d0;border-radius:8px;font-size:0.95rem;background:var(--bg);transition:border-color var(--transition);}
+  .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--accent);}
+  .currency-choice{display:flex;gap:12px;margin-bottom:16px;}
+  .currency-choice label{flex:1;border:2px solid #e0d8d0;border-radius:8px;padding:10px 14px;cursor:pointer;font-size:0.88rem;font-weight:600;text-align:center;transition:border-color var(--transition);}
+  .currency-choice input[type=radio]{display:none;}
+  .currency-choice input[type=radio]:checked + label{border-color:var(--accent);color:var(--accent);background:#fff7f2;}
+  .card-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;}
+  .stripe-badge{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--muted);margin-bottom:16px;}
+  .order-summary-box{background:var(--light);border-radius:8px;padding:16px;margin-bottom:20px;}
+  .order-line{display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:6px;}
+  .order-line .cny-note{font-size:0.75rem;color:var(--muted);}
+  .order-line.total{font-weight:700;font-size:1rem;border-top:1px solid #ddd;padding-top:8px;margin-top:8px;}
+  .place-order-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:16px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity var(--transition);}
+  .place-order-btn:hover{opacity:0.88;}
+
+  /* ── SUCCESS ── */
+  .success-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400;align-items:center;justify-content:center;}
+  .success-overlay.open{display:flex;}
+  .success-box{background:var(--white);border-radius:var(--radius);padding:48px 36px;text-align:center;max-width:420px;width:90%;}
+  .success-icon{font-size:4rem;margin-bottom:16px;}
+  .success-box h2{font-size:1.4rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
+  .success-box p{color:var(--muted);margin-bottom:8px;}
+  .success-box .order-id{font-weight:700;font-size:1.1rem;color:var(--accent);margin-bottom:24px;}
+  .success-box button{background:var(--accent);color:#fff;border:none;border-radius:50px;padding:12px 32px;font-size:1rem;font-weight:600;cursor:pointer;}
+
+  /* ── FOOTER ── */
+  footer{background:var(--primary);color:#fff;padding:48px 20px 24px;}
+  .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;margin-bottom:32px;}
+  .footer-brand p{font-size:0.85rem;opacity:0.7;margin-top:8px;max-width:220px;}
+  .footer-col h4{font-size:0.9rem;font-weight:700;margin-bottom:14px;color:var(--accent);}
+  .footer-col a{display:block;font-size:0.85rem;opacity:0.7;margin-bottom:8px;transition:opacity var(--transition);}
+  .footer-col a:hover{opacity:1;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:0.8rem;opacity:0.5;}
+
+  /* ── TOAST ── */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--primary);color:#fff;padding:12px 24px;border-radius:50px;font-size:0.9rem;font-weight:600;z-index:500;transition:transform 0.3s ease;white-space:nowrap;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  /* ── MOBILE ── */
+  @media(max-width:768px){
+    .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--white);flex-direction:column;padding:16px 20px;gap:16px;box-shadow:var(--shadow);z-index:99;}
+    .nav-links.open{display:flex;}
+    .hamburger{display:flex;}
+    .form-row{grid-template-columns:1fr;}
+    .card-row{grid-template-columns:1fr 1fr;}
+    .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+    .product-img{height:150px;}
+    .currency-bar{font-size:0.72rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- CURRENCY TOP BAR -->
+<div class="currency-bar">
+  <div class="rate-info">
+    <span class="live-dot"></span>
+    <span id="rateText">Loading exchange rate...</span>
+    <span id="rateDate" style="opacity:0.5;"></span>
+  </div>
+  <div class="currency-toggle">
+    <button class="active" id="btnAUD" onclick="setCurrency('AUD')">AUD $</button>
+    <button id="btnCNY" onclick="setCurrency('CNY')">CNY ¥</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div>
+      <div class="logo">Cozy <span>Home</span></div>
+      <span class="logo-sub">舒适之家</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- EXCHANGE RATE BANNER -->
+<div class="rate-banner" id="rateBanner">
+  🏦 Today's Bank Rate: <strong id="bannerRate">Loading...</strong>
+  <span class="rate-source" id="bannerSource"></span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Sleep Better, Live Cosier 🛏️<span class="zh">优质床品 · 舒适生活</span></h1>
+  <p>Premium sheets, blankets, pillowcases and bedroom manchester — crafted for comfort.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Now 立即购买</button>
+    <button class="btn-outline" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Browse All 浏览全部</button>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="icon">🚚</div><h4>Free Shipping 免运费</h4><p>On orders over A$80</p></div>
+    <div class="trust-item"><div class="icon">🔄</div><h4>Easy Returns 退换无忧</h4><p>30-day hassle-free returns</p></div>
+    <div class="trust-item"><div class="icon">🔒</div><h4>Secure Payment 安全支付</h4><p>Powered by Stripe</p></div>
+    <div class="trust-item"><div class="icon">💱</div><h4>Dual Currency 双币支持</h4><p>AUD & CNY — live rates</p></div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+  <div class="section-title">Shop by Category <span style="font-size:1rem;color:var(--muted);font-weight:400;">按类别购物</span></div>
+  <div class="section-sub">Find exactly what you need · 找到您所需</div>
+  <div class="categories">
+    <div class="cat-card active" onclick="filterCat('all',this)"><div class="cat-icon">🏠</div><h3>All Products</h3><small>全部商品</small></div>
+    <div class="cat-card" onclick="filterCat('sheets',this)"><div class="cat-icon">🛏️</div><h3>Bed Sheets</h3><small>床单套装</small></div>
+    <div class="cat-card" onclick="filterCat('blankets',this)"><div class="cat-icon">🧣</div><h3>Blankets</h3><small>毯子</small></div>
+    <div class="cat-card" onclick="filterCat('pillows',this)"><div class="cat-icon">😴</div><h3>Pillows</h3><small>枕头枕套</small></div>
+    <div class="cat-card" onclick="filterCat('quilts',this)"><div class="cat-icon">🌿</div><h3>Quilts</h3><small>被子</small></div>
+    <div class="cat-card" onclick="filterCat('towels',this)"><div class="cat-icon">🛁</div><h3>Towels</h3><small>毛巾</small></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="shop" style="padding-top:0;">
+  <div class="section-title">Our Products <span style="font-size:1rem;color:var(--muted);font-weight:400;">精选商品</span></div>
+  <div class="section-sub">Quality comfort for every bedroom · 每间卧室的品质享受</div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="color:#fff;">Cozy <span>Home</span></div>
+      <p>Premium bedroom manchester. Ships Australia-wide. 澳大利亚全国配送。</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">Bed Sheets 床单</a>
+      <a href="#">Blankets 毯子</a>
+      <a href="#">Pillows 枕头</a>
+      <a href="#">Quilts 被子</a>
+      <a href="#">Towels 毛巾</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help 帮助</h4>
+      <a href="#">Shipping 运费</a>
+      <a href="#">Returns 退货</a>
+      <a href="#">Size Guide 尺码</a>
+      <a href="#">FAQ 常见问题</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact 联系我们</h4>
+      <a href="#">hello@cozyhome.com.au</a>
+      <a href="#">1300 COZY HOME</a>
+      <a href="#">WeChat 微信</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Cozy Home. All rights reserved. ABN 00 000 000 000</span>
+    <span>AUD/CNY rate via Open Exchange Rates</span>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>Your Cart 购物车 🛒</h2>
+    <button class="close-cart" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty 购物车是空的 😴</div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total-row"><span style="font-weight:700;">Total 合计</span><span class="cart-total-aud" id="cartTotalAUD">A$0.00</span></div>
+    <div class="cart-total-cny" id="cartTotalCNY"></div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout 去结账 →</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Checkout 结账 🔒</h2>
+      <button class="close-cart" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="order-summary-box" id="orderSummaryBox"></div>
+
+      <form id="checkoutForm" onsubmit="placeOrder(event)">
+        <div class="form-section">
+          <h3>Contact 联系方式</h3>
+          <div class="form-group"><label>Full Name 姓名 *</label><input type="text" id="fname" required placeholder="Jane Smith / 张三"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>Email 邮箱 *</label><input type="email" id="femail" required placeholder="jane@email.com"/></div>
+            <div class="form-group"><label>Phone 电话</label><input type="tel" id="fphone" placeholder="04XX XXX XXX"/></div>
+          </div>
+          <div class="form-group"><label>WeChat ID 微信号 (optional)</label><input type="text" id="fwechat" placeholder="WeChat ID"/></div>
+        </div>
+        <div class="form-section">
+          <h3>Shipping Address 收货地址</h3>
+          <div class="form-group"><label>Street 街道 *</label><input type="text" id="faddr" required placeholder="123 Main Street"/></div>
+          <div class="form-row">
+            <div class="form-group"><label>City 城市 *</label><input type="text" id="fcity" required placeholder="Melbourne"/></div>
+            <div class="form-group"><label>State 州 *</label>
+              <select id="fstate" required>
+                <option value="">Select...</option>
+                <option>VIC</option><option>NSW</option><option>QLD</option>
+                <option>WA</option><option>SA</option><option>TAS</option><option>ACT</option><option>NT</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Postcode 邮编 *</label><input type="text" id="fpost" required placeholder="3000" maxlength="4"/></div>
+            <div class="form-group"><label>Country 国家</label><input type="text" value="Australia" readonly/></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h3>Payment Currency 结账货币</h3>
+          <div class="currency-choice">
+            <input type="radio" name="payCurrency" id="payAUD" value="AUD" checked>
+            <label for="payAUD">🇦🇺 AUD (A$)</label>
+            <input type="radio" name="payCurrency" id="payCNY" value="CNY">
+            <label for="payCNY">🇨🇳 CNY (¥)</label>
+          </div>
+          <div id="payAmountDisplay" style="font-size:0.9rem;color:var(--muted);margin-bottom:14px;"></div>
+        </div>
+        <div class="form-section">
+          <h3>Card Details 银行卡信息</h3>
+          <div class="stripe-badge">🔒 Secured by Stripe — card details are encrypted · 由Stripe加密保护</div>
+          <div class="form-group"><label>Card Number 卡号 *</label><input type="text" id="fcardnum" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"/></div>
+          <div class="card-row">
+            <div class="form-group"><label>Name on Card *</label><input type="text" id="fcardname" required placeholder="Jane Smith"/></div>
+            <div class="form-group"><label>Expiry 有效期 *</label><input type="text" id="fexpiry" required placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"/></div>
+            <div class="form-group"><label>CVV *</label><input type="text" id="fcvv" required placeholder="123" maxlength="4"/></div>
+          </div>
+        </div>
+        <button type="submit" class="place-order-btn" id="placeOrderBtn">Place Order 下单支付 →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h2>Order Placed! 订单成功!</h2>
+    <p>Thank you! Your order has been received. · 感谢您的订购!</p>
+    <p>A confirmation email will be sent shortly. · 确认邮件即将发送。</p>
+    <p class="order-id" id="successOrderId"></p>
+    <button onclick="closeSuccess()">Continue Shopping 继续购物</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════
+// PRODUCT DATA — easy to replace with API/DB
+// ═══════════════════════════════════════════
+const PRODUCTS = [
+  {id:1,  name:"Egyptian Cotton Sheet Set",   nameZh:"埃及棉床单套装",   cat:"sheets",   price:89.95,  badge:"Bestseller", emoji:"🛏️", desc:"400 thread count, silky smooth. Queen/King/Double."},
+  {id:2,  name:"Bamboo Sheet Set",            nameZh:"竹纤维床单套装",   cat:"sheets",   price:79.95,  badge:"Eco",         emoji:"🌿", desc:"100% organic bamboo, breathable & hypoallergenic."},
+  {id:3,  name:"Fitted Sheet — King",         nameZh:"床笠(King尺寸)", cat:"sheets",   price:49.95,  badge:"",            emoji:"📐", desc:"Deep pocket fitted sheet, elasticated all around."},
+  {id:4,  name:"Luxury Sherpa Blanket",       nameZh:"奢华雪巴绒毯",     cat:"blankets", price:69.95,  badge:"New",         emoji:"🧣", desc:"Ultra-soft sherpa fleece, perfect for cool nights."},
+  {id:5,  name:"Waffle Knit Throw",           nameZh:"华夫格针织毯",     cat:"blankets", price:54.95,  badge:"",            emoji:"🍫", desc:"Stylish waffle knit throw, 100% cotton."},
+  {id:6,  name:"Weighted Blanket 7kg",        nameZh:"重力毯 7公斤",     cat:"blankets", price:119.95, badge:"Popular",     emoji:"⚖️", desc:"Therapeutic weighted blanket for deeper sleep."},
+  {id:7,  name:"Memory Foam Pillow",          nameZh:"记忆棉枕头",       cat:"pillows",  price:59.95,  badge:"Bestseller",  emoji:"😴", desc:"Contour memory foam, medium-firm support."},
+  {id:8,  name:"Pillowcase Set (2 pack)",     nameZh:"枕套套装(2件)",  cat:"pillows",  price:29.95,  badge:"",            emoji:"🎁", desc:"Standard & king size, 300 thread count cotton."},
+  {id:9,  name:"Duck Down Pillow",            nameZh:"鸭绒枕头",         cat:"pillows",  price:74.95,  badge:"Premium",     emoji:"🪶", desc:"Soft duck down fill, naturally breathable."},
+  {id:10, name:"All-Season Quilt 400GSM",     nameZh:"四季被 400GSM",    cat:"quilts",   price:99.95,  badge:"Bestseller",  emoji:"🌸", desc:"Microfibre fill, suitable for all seasons."},
+  {id:11, name:"Winter Goose Down Doona",     nameZh:"冬季鹅绒被",       cat:"quilts",   price:189.95, badge:"Premium",     emoji:"❄️", desc:"700GSM goose down, supremely warm."},
+  {id:12, name:"Summer Bamboo Quilt",         nameZh:"夏季竹纤维薄被",   cat:"quilts",   price:89.95,  badge:"New",         emoji:"☀️", desc:"Lightweight bamboo fill, ideal for warm months."},
+  {id:13, name:"Bath Towel Set (4 pack)",     nameZh:"浴巾套装(4件)",  cat:"towels",   price:64.95,  badge:"",            emoji:"🛁", desc:"600GSM Egyptian cotton, ultra absorbent."},
+  {id:14, name:"Luxury Hand Towel Set",       nameZh:"奢华洗手巾套装",   cat:"towels",   price:39.95,  badge:"",            emoji:"🤲", desc:"Soft and quick-dry, 500GSM cotton."},
+  {id:15, name:"Beach Towel — Oversized",     nameZh:"超大沙滩巾",       cat:"towels",   price:44.95,  badge:"Summer",      emoji:"🏖️", desc:"180x100cm, sand-free microfibre."},
+  {id:16, name:"Bed Runner & Cushion Set",    nameZh:"床旗抱枕套装",     cat:"sheets",   price:55.95,  badge:"New",         emoji:"💛", desc:"Decorative bed runner + 2 matching cushion covers."},
+];
+
+// ═══════════════════════════════════════════
+// EXCHANGE RATE — fetches live AUD→CNY daily
+// Falls back to stored rate, then 4.75 default
+// ═══════════════════════════════════════════
+let audToCny = 4.75; // fallback default
+let rateSource = "fallback";
+let rateFetched = false;
+
+async function fetchExchangeRate() {
+  const CACHE_KEY = "cozyhome_rate";
+  const CACHE_DATE = "cozyhome_rate_date";
+  const today = new Date().toISOString().slice(0,10);
+
+  // Use cached rate if fetched today
+  const cachedDate = localStorage.getItem(CACHE_DATE);
+  const cachedRate = parseFloat(localStorage.getItem(CACHE_KEY));
+  if(cachedDate === today && cachedRate > 0) {
+    audToCny = cachedRate;
+    rateSource = "cached";
+    updateRateUI(today);
+    return;
+  }
+
+  try {
+    // Open Exchange Rates — free tier, no key needed for latest AUD/CNY
+    // Uses exchangerate-api.com free endpoint (no API key required)
+    const res = await fetch("https://open.er-api.com/v6/latest/AUD");
+    if(!res.ok) throw new Error("API error");
+    const data = await res.json();
+    if(data && data.rates && data.rates.CNY) {
+      audToCny = parseFloat(data.rates.CNY.toFixed(4));
+      rateSource = "Open Exchange Rates";
+      localStorage.setItem(CACHE_KEY, audToCny);
+      localStorage.setItem(CACHE_DATE, today);
+      updateRateUI(data.time_last_update_utc || today);
+      return;
+    }
+    throw new Error("No CNY rate");
+  } catch(e1) {
+    try {
+      // Fallback: exchangerate.host
+      const res2 = await fetch("https://api.exchangerate.host/latest?base=AUD&symbols=CNY");
+      const data2 = await res2.json();
+      if(data2 && data2.rates && data2.rates.CNY) {
+        audToCny = parseFloat(data2.rates.CNY.toFixed(4));
+        rateSource = "ExchangeRate.host";
+        localStorage.setItem(CACHE_KEY, audToCny);
+        localStorage.setItem(CACHE_DATE, today);
+        updateRateUI(today);
+        return;
+      }
+    } catch(e2) {}
+    // Use fallback or cached from prev day
+    if(cachedRate > 0) { audToCny = cachedRate; rateSource = "last known"; }
+    else { rateSource = "estimated"; }
+    updateRateUI(today);
+  }
+}
+
+function updateRateUI(dateStr) {
+  rateFetched = true;
+  const rateEl = document.getElementById("rateText");
+  const dateEl = document.getElementById("rateDate");
+  const bannerEl = document.getElementById("bannerRate");
+  const sourceEl = document.getElementById("bannerSource");
+  const cnyBuy  = (audToCny * 0.993).toFixed(4);  // approx bank buy (−0.7%)
+  const cnySell = (audToCny * 1.007).toFixed(4);  // approx bank sell (+0.7%)
+  if(rateEl) rateEl.textContent = `A$1 = ¥${audToCny.toFixed(4)} CNY`;
+  if(dateEl) dateEl.textContent = `· ${dateStr.slice(0,10)}`;
+  if(bannerEl) bannerEl.innerHTML = `A$1 = ¥${audToCny.toFixed(4)} CNY &nbsp;|&nbsp; 🏦 Bank Buy 买入: ¥${cnyBuy} &nbsp;|&nbsp; Bank Sell 卖出: ¥${cnySell}`;
+  if(sourceEl) sourceEl.textContent = `· Source: ${rateSource}`;
+  // Re-render products with updated rate
+  renderProducts(currentFilter);
+  renderCart();
+}
+
+function audToCnyPrice(aud) { return (aud * audToCny).toFixed(2); }
+
+// ═══════════════════════════════════════════
+// CURRENCY DISPLAY
+// ═══════════════════════════════════════════
+let displayCurrency = "AUD";
+
+function setCurrency(cur) {
+  displayCurrency = cur;
+  document.getElementById("btnAUD").classList.toggle("active", cur === "AUD");
+  document.getElementById("btnCNY").classList.toggle("active", cur === "CNY");
+  renderProducts(currentFilter);
+  renderCart();
+}
+
+function formatPrice(aud) {
+  if(displayCurrency === "CNY") return `¥${audToCnyPrice(aud)}`;
+  return `A$${aud.toFixed(2)}`;
+}
+
+// ═══════════════════════════════════════════
+// PRODUCTS
+// ═══════════════════════════════════════════
+let currentFilter = "all";
+
+function renderProducts(filter) {
+  currentFilter = filter;
+  const grid = document.getElementById("productsGrid");
+  const list = filter === "all" ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  grid.innerHTML = list.map(p => `
+    <div class="product-card">
+      <div class="product-img">${p.emoji}</div>
+      <div class="product-info">
+        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
+        <div class="product-name">${p.name}</div>
+        <div class="product-name-zh">${p.nameZh}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-aud">${formatPrice(p.price)}</span>
+            <span class="price-cny">${displayCurrency==="AUD" ? "≈ ¥"+audToCnyPrice(p.price)+" CNY" : "≈ A$"+p.price.toFixed(2)+" AUD"}</span>
+          </div>
+          <button class="add-to-cart" onclick="addToCart(${p.id})">Add 加购</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function filterCat(cat, el) {
+  document.querySelectorAll(".cat-card").forEach(c => c.classList.remove("active"));
+  el.classList.add("active");
+  renderProducts(cat);
+}
+
+// ═══════════════════════════════════════════
+// CART
+// ═══════════════════════════════════════════
+let cart = JSON.parse(localStorage.getItem("ch_cart") || "[]");
+
+function addToCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  const ex = cart.find(x => x.id === id);
+  if(ex) ex.qty++;
+  else cart.push({...p, qty:1});
+  saveCart();
+  showToast(`✓ ${p.name} added · 已加入购物车`);
+  renderCart();
+}
+
+function saveCart() {
+  localStorage.setItem("ch_cart", JSON.stringify(cart));
+  document.getElementById("cartCount").textContent = cart.reduce((s,i) => s+i.qty, 0);
+}
+
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  const footer = document.getElementById("cartFooter");
+  if(!cart.length) {
+    container.innerHTML = "<div class='cart-empty'>Your cart is empty 购物车是空的 😴</div>";
+    footer.style.display = "none";
+    return;
+  }
+  footer.style.display = "block";
+  const total = cart.reduce((s,i) => s+(i.price*i.qty), 0);
+  document.getElementById("cartTotalAUD").textContent = `A$${total.toFixed(2)}`;
+  document.getElementById("cartTotalCNY").textContent = `≈ ¥${audToCnyPrice(total)} CNY`;
+  container.innerHTML = cart.map(i => `
+    <div class="cart-item">
+      <div class="cart-item-img">${i.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${i.name}</div>
+        <div class="cart-item-price">A$${i.price.toFixed(2)} each <span class="cny">≈ ¥${audToCnyPrice(i.price)}</span></div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+          <span class="qty-num">${i.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeItem(${i.id})">✕</button>
+    </div>
+  `).join("");
+}
+
+function changeQty(id, d) {
+  const item = cart.find(i => i.id === id);
+  if(!item) return;
+  item.qty += d;
+  if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  saveCart(); renderCart();
+}
+function removeItem(id) { cart = cart.filter(i => i.id !== id); saveCart(); renderCart(); }
+function openCart()  { document.getElementById("cartSidebar").classList.add("open"); document.getElementById("cartOverlay").classList.add("open"); }
+function closeCart() { document.getElementById("cartSidebar").classList.remove("open"); document.getElementById("cartOverlay").classList.remove("open"); }
+
+// ═══════════════════════════════════════════
+// CHECKOUT
+// ═══════════════════════════════════════════
+function openCheckout() {
+  closeCart();
+  const total = cart.reduce((s,i) => s+(i.price*i.qty), 0);
+  const shipping = total >= 80 ? 0 : 9.95;
+  const grandTotal = total + shipping;
+  document.getElementById("orderSummaryBox").innerHTML = `
+    ${cart.map(i=>`
+      <div class="order-line">
+        <span>${i.emoji} ${i.name} × ${i.qty}</span>
+        <span>A$${(i.price*i.qty).toFixed(2)}</span>
+      </div>`).join("")}
+    <div class="order-line"><span>Shipping 运费</span><span>${shipping===0?"FREE 免运费":"A$"+shipping.toFixed(2)}</span></div>
+    <div class="order-line total">
+      <span>Total 合计</span>
+      <span>A$${grandTotal.toFixed(2)} <span class="cny-note">≈ ¥${audToCnyPrice(grandTotal)}</span></span>
+    </div>
+  `;
+  updatePayDisplay();
+  document.getElementById("checkoutModal").classList.add("open");
+  document.querySelectorAll("input[name=payCurrency]").forEach(r => r.addEventListener("change", updatePayDisplay));
+}
+
+function updatePayDisplay() {
+  const total = cart.reduce((s,i) => s+(i.price*i.qty), 0) + (cart.reduce((s,i)=>s+(i.price*i.qty),0) >= 80 ? 0 : 9.95);
+  const cur = document.querySelector("input[name=payCurrency]:checked")?.value || "AUD";
+  const el = document.getElementById("payAmountDisplay");
+  if(cur === "CNY") el.textContent = `You will pay: ¥${audToCnyPrice(total)} CNY (rate: 1 AUD = ${audToCny} CNY)`;
+  else el.textContent = `You will pay: A$${total.toFixed(2)} AUD`;
+}
+
+function closeCheckout() { document.getElementById("checkoutModal").classList.remove("open"); }
+
+function formatCard(el)   { let v=el.value.replace(/\D/g,"").substring(0,16); el.value=v.replace(/(\d{4})/g,"$1 ").trim(); }
+function formatExpiry(el) { let v=el.value.replace(/\D/g,""); if(v.length>=2) v=v.substring(0,2)+"/"+v.substring(2,4); el.value=v; }
+
+function placeOrder(e) {
+  e.preventDefault();
+  const btn = document.getElementById("placeOrderBtn");
+  btn.textContent = "Processing... 处理中..."; btn.disabled = true;
+  const total = cart.reduce((s,i) => s+(i.price*i.qty), 0);
+  const shipping = total >= 80 ? 0 : 9.95;
+  const grandTotal = total + shipping;
+  const payCur = document.querySelector("input[name=payCurrency]:checked")?.value || "AUD";
+
+  // ══ DATABASE HOOK ══════════════════════════════════
+  // Replace the fetch below with your real API endpoint
+  // ═══════════════════════════════════════════════════
+  const orderData = {
+    orderId:    "CH-" + Date.now(),
+    timestamp:  new Date().toISOString(),
+    customer: {
+      name:    document.getElementById("fname").value,
+      email:   document.getElementById("femail").value,
+      phone:   document.getElementById("fphone").value,
+      wechat:  document.getElementById("fwechat").value,
+      address: {
+        street:   document.getElementById("faddr").value,
+        city:     document.getElementById("fcity").value,
+        state:    document.getElementById("fstate").value,
+        postcode: document.getElementById("fpost").value,
+        country:  "Australia"
+      }
+    },
+    items:      cart.map(i=>({id:i.id, name:i.name, nameZh:i.nameZh, price:i.price, qty:i.qty})),
+    totals: {
+      subtotal:   total,
+      shipping:   shipping,
+      grandTotal: grandTotal,
+      currency:   payCur,
+      audToCny:   audToCny,
+      amountCNY:  payCur==="CNY" ? parseFloat(audToCnyPrice(grandTotal)) : null,
+      rateSource: rateSource
+    },
+    payment: { method:"stripe", currency: payCur, status:"pending" }
+  };
+
+  // TODO: connect your backend
+  // fetch("/api/orders", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(orderData) })
+  //   .then(r => r.json()).then(data => { /* handle response */ });
+
+  console.log("ORDER DATA (ready for DB):", JSON.stringify(orderData, null, 2));
+
+  setTimeout(() => {
+    closeCheckout();
+    document.getElementById("successOrderId").textContent = `Order ID: ${orderData.orderId}`;
+    document.getElementById("successOverlay").classList.add("open");
+    cart = []; saveCart(); renderCart();
+    btn.textContent = "Place Order 下单支付 →"; btn.disabled = false;
+  }, 1800);
+}
+
+function closeSuccess() { document.getElementById("successOverlay").classList.remove("open"); }
+
+// ── NAV ──
+function toggleMenu() { document.getElementById("navLinks").classList.toggle("open"); }
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+// ── INIT ──
+fetchExchangeRate();
+renderProducts("all");
+saveCart();
+renderCart();
+</script>
+</body>
+</html>
