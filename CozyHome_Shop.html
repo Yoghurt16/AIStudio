@@ -1,706 +1,451 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cozy Home — Premium Bedroom & Manchester</title>
-<meta name="description" content="Premium bedding, sheets, blankets and bedroom manchester."/>
+<title>Cozy Home</title>
 <style>
-:root{--primary:#3d2b1f;--accent:#c9956c;--bg:#faf8f5;--white:#fff;--light:#f0ebe4;--text:#2c2c2c;--muted:#888;--r:12px;--sh:0 2px 16px rgba(0,0,0,.08);--tr:.2s ease;}
+:root{--p:#2c2c2c;--a:#b07d62;--bg:#fff;--soft:#f7f4f1;--lt:#efe9e3;--tx:#333;--mu:#999;--bd:#e8e2dc;--r:8px;--sh:0 4px 24px rgba(0,0,0,.07);--tr:.2s ease;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;}
 a{text-decoration:none;color:inherit;}
-
-/* TOP BAR */
-.topbar{background:var(--primary);color:#fff;padding:6px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.78rem;}
-.topbar .live{display:flex;align-items:center;gap:6px;opacity:.9;}
-.dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.topbar-right{display:flex;align-items:center;gap:10px;}
-.cur-toggle{display:flex;background:rgba(255,255,255,.15);border-radius:50px;overflow:hidden;}
-.cur-toggle button{background:none;border:none;color:#fff;padding:4px 14px;font-size:.78rem;cursor:pointer;font-weight:600;transition:background var(--tr);}
-.cur-toggle button.on{background:var(--accent);}
-.lang-toggle{display:flex;background:rgba(255,255,255,.15);border-radius:50px;overflow:hidden;}
-.lang-toggle button{background:none;border:none;color:#fff;padding:4px 14px;font-size:.78rem;cursor:pointer;font-weight:600;transition:background var(--tr);}
-.lang-toggle button.on{background:#c9956c;}
-
-/* RATE BANNER */
-.rate-banner{background:#fff7ed;border-bottom:1px solid #f0ebe4;padding:8px 20px;text-align:center;font-size:.82rem;color:var(--primary);}
-.rate-banner strong{color:var(--accent);}
-.rate-banner small{color:var(--muted);margin-left:6px;}
-
-/* NAV */
-nav{background:var(--white);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06);}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;}
-.logo{font-size:1.4rem;font-weight:700;color:var(--primary);}
-.logo span{color:var(--accent);}
-.nav-links{display:flex;gap:28px;font-size:.95rem;}
-.nav-links a:hover{color:var(--accent);cursor:pointer;}
-.nav-right{display:flex;align-items:center;gap:12px;}
-.cart-btn{background:var(--primary);color:#fff;border:none;border-radius:50px;padding:8px 20px;cursor:pointer;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:background var(--tr);}
-.cart-btn:hover{background:var(--accent);}
-.cart-count{background:var(--accent);color:#fff;border-radius:50%;width:20px;height:20px;font-size:.7rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
-.hamburger span{width:24px;height:2px;background:var(--primary);border-radius:2px;}
-
-/* HERO */
-.hero{background:linear-gradient(135deg,#3d2b1f,#6b4c38);color:#fff;padding:80px 20px;text-align:center;}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;margin-bottom:12px;line-height:1.2;}
-.hero p{font-size:1.1rem;opacity:.85;max-width:500px;margin:0 auto 32px;}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn-p{background:var(--accent);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:opacity var(--tr);}
-.btn-p:hover{opacity:.88;}
-.btn-o{background:transparent;color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;border:2px solid rgba(255,255,255,.5);cursor:pointer;transition:border-color var(--tr);}
-.btn-o:hover{border-color:#fff;}
-
-/* TRUST */
-.trust{background:var(--light);padding:36px 20px;}
-.trust-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center;}
-.trust-item .icon{font-size:1.8rem;margin-bottom:6px;}
-.trust-item h4{font-size:.92rem;font-weight:700;color:var(--primary);}
-.trust-item p{font-size:.8rem;color:var(--muted);}
-
-/* SECTION */
-.section{max-width:1200px;margin:0 auto;padding:56px 20px;}
-.sec-title{font-size:1.6rem;font-weight:700;color:var(--primary);margin-bottom:6px;}
-.sec-sub{color:var(--muted);margin-bottom:32px;}
-
-/* CATEGORIES */
-.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
-.cat{background:var(--white);border-radius:var(--r);padding:22px 14px;text-align:center;cursor:pointer;transition:transform var(--tr),box-shadow var(--tr);border:2px solid transparent;}
-.cat:hover,.cat.on{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--accent);}
-.cat .ci{font-size:2rem;margin-bottom:8px;}
-.cat h3{font-size:.88rem;font-weight:600;color:var(--primary);}
-
-/* PRODUCTS */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;}
-.card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:transform var(--tr);}
-.card:hover{transform:translateY(-5px);}
-.card-img{width:100%;height:200px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:3.8rem;overflow:hidden;}
-.card-img img{width:100%;height:100%;object-fit:cover;}
-.card-body{padding:15px;}
-.badge{display:inline-block;background:var(--light);color:var(--accent);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-bottom:7px;text-transform:uppercase;}
-.card-name{font-size:.97rem;font-weight:600;color:var(--primary);margin-bottom:4px;}
-.card-desc{font-size:.82rem;color:var(--muted);margin-bottom:11px;}
-.card-foot{display:flex;align-items:center;justify-content:space-between;}
-.price-wrap{display:flex;flex-direction:column;}
-.price-main{font-size:1.1rem;font-weight:700;color:var(--primary);}
-.price-alt{font-size:.75rem;color:var(--muted);}
-.atc{background:var(--primary);color:#fff;border:none;border-radius:50px;padding:7px 16px;font-size:.83rem;font-weight:600;cursor:pointer;transition:background var(--tr);}
-.atc:hover{background:var(--accent);}
-
-/* CART SIDEBAR */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;}
-.overlay.on{display:block;}
-.sidebar{position:fixed;top:0;right:-420px;width:min(420px,100vw);height:100%;background:var(--white);z-index:201;transition:right .3s ease;display:flex;flex-direction:column;}
-.sidebar.on{right:0;}
-.sb-head{padding:20px 24px;border-bottom:1px solid var(--light);display:flex;align-items:center;justify-content:space-between;}
-.sb-head h2{font-size:1.15rem;font-weight:700;color:var(--primary);}
-.x-btn{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);}
-.sb-items{flex:1;overflow-y:auto;padding:18px 24px;}
-.empty{text-align:center;color:var(--muted);margin-top:60px;}
-.ci-row{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--light);}
-.ci-thumb{width:62px;height:62px;border-radius:8px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0;overflow:hidden;}
-.ci-thumb img{width:100%;height:100%;object-fit:cover;}
-.ci-info{flex:1;}
-.ci-name{font-size:.88rem;font-weight:600;color:var(--primary);}
-.ci-price{font-size:.8rem;color:var(--muted);}
-.ci-qty{display:flex;align-items:center;gap:8px;margin-top:6px;}
-.q-btn{background:var(--light);border:none;border-radius:6px;width:25px;height:25px;cursor:pointer;font-size:1rem;font-weight:700;}
-.q-num{font-size:.88rem;font-weight:600;min-width:18px;text-align:center;}
-.rm{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.75rem;margin-left:auto;align-self:flex-start;}
-.sb-foot{padding:18px 24px;border-top:1px solid var(--light);}
-.tot-row{display:flex;justify-content:space-between;font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:4px;}
-.tot-alt{font-size:.82rem;color:var(--muted);margin-bottom:13px;}
-.co-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:15px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity var(--tr);}
-.co-btn:hover{opacity:.88;}
-
-/* CHECKOUT MODAL */
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center;padding:20px;}
-.modal-bg.on{display:flex;}
-.modal{background:var(--white);border-radius:var(--r);width:100%;max-width:540px;max-height:92vh;overflow-y:auto;}
-.mo-head{padding:22px 26px 0;display:flex;justify-content:space-between;align-items:center;}
-.mo-head h2{font-size:1.2rem;font-weight:700;color:var(--primary);}
-.mo-body{padding:22px 26px;}
-.fs{margin-bottom:22px;}
-.fs h3{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--light);}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
-.fg{margin-bottom:12px;}
-.fg label{display:block;font-size:.83rem;font-weight:600;color:var(--primary);margin-bottom:5px;}
-.fg input,.fg select{width:100%;padding:9px 13px;border:1.5px solid #e0d8d0;border-radius:8px;font-size:.93rem;background:var(--bg);transition:border-color var(--tr);}
-.fg input:focus,.fg select:focus{outline:none;border-color:var(--accent);}
-.cur-pick{display:flex;gap:10px;margin-bottom:14px;}
-.cur-pick input{display:none;}
-.cur-pick label{flex:1;border:2px solid #e0d8d0;border-radius:8px;padding:9px 12px;cursor:pointer;font-size:.85rem;font-weight:600;text-align:center;transition:border-color var(--tr);}
-.cur-pick input:checked+label{border-color:var(--accent);color:var(--accent);background:#fff7f2;}
-.c3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:11px;}
-.stripe-note{font-size:.75rem;color:var(--muted);margin-bottom:14px;}
-.ord-sum{background:var(--light);border-radius:8px;padding:14px;margin-bottom:18px;}
-.ol{display:flex;justify-content:space-between;font-size:.86rem;margin-bottom:5px;}
-.ol.tot{font-weight:700;font-size:.97rem;border-top:1px solid #ddd;padding-top:7px;margin-top:7px;}
-.pay-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:15px;font-size:1rem;font-weight:700;cursor:pointer;transition:opacity var(--tr);}
-.pay-btn:hover{opacity:.88;}
-
-/* SUCCESS */
-.suc-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;align-items:center;justify-content:center;}
-.suc-bg.on{display:flex;}
-.suc-box{background:var(--white);border-radius:var(--r);padding:44px 32px;text-align:center;max-width:400px;width:90%;}
-.suc-box .si{font-size:3.5rem;margin-bottom:14px;}
-.suc-box h2{font-size:1.3rem;font-weight:700;color:var(--primary);margin-bottom:8px;}
-.suc-box p{color:var(--muted);margin-bottom:6px;font-size:.9rem;}
-.suc-id{font-weight:700;font-size:1rem;color:var(--accent);margin:10px 0 20px;}
-.suc-box button{background:var(--accent);color:#fff;border:none;border-radius:50px;padding:11px 28px;font-size:.95rem;font-weight:600;cursor:pointer;}
-
-/* FOOTER */
-footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
-.ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px;margin-bottom:28px;}
-.ft-brand p{font-size:.83rem;opacity:.65;margin-top:7px;max-width:210px;}
-.ft-col h4{font-size:.88rem;font-weight:700;margin-bottom:12px;color:var(--accent);}
-.ft-col a{display:block;font-size:.83rem;opacity:.65;margin-bottom:7px;transition:opacity var(--tr);cursor:pointer;}
-.ft-col a:hover{opacity:1;}
-.ft-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.78rem;opacity:.45;}
-
-/* TOAST */
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--primary);color:#fff;padding:11px 22px;border-radius:50px;font-size:.88rem;font-weight:600;z-index:500;transition:transform .3s ease;white-space:nowrap;}
+.ubar{background:var(--soft);border-bottom:1px solid var(--bd);padding:6px 28px;display:flex;align-items:center;justify-content:flex-end;gap:12px;font-size:.74rem;color:var(--mu);}
+#rateLabel{margin-right:auto;}
+.pill{display:flex;border:1px solid var(--bd);border-radius:50px;overflow:hidden;background:#fff;}
+.pill button{background:none;border:none;padding:3px 13px;font-size:.73rem;cursor:pointer;font-weight:600;color:var(--mu);transition:all var(--tr);}
+.pill button.on{background:var(--a);color:#fff;}
+.vsep{width:1px;height:14px;background:var(--bd);}
+nav{background:#fff;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--bd);}
+.ni{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:66px;}
+.logo{font-size:1.4rem;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--p);}
+.logo b{font-weight:700;color:var(--a);}
+.nl{display:flex;gap:28px;font-size:.78rem;letter-spacing:.8px;text-transform:uppercase;}
+.nl a{color:var(--mu);cursor:pointer;transition:color var(--tr);}
+.nl a:hover{color:var(--p);}
+.nr{display:flex;align-items:center;gap:12px;}
+.cb{background:var(--p);color:#fff;border:none;border-radius:4px;padding:9px 20px;cursor:pointer;font-size:.76rem;font-weight:600;letter-spacing:.5px;display:flex;align-items:center;gap:8px;transition:background var(--tr);}
+.cb:hover{background:var(--a);}
+.cc{background:var(--a);color:#fff;border-radius:50%;width:17px;height:17px;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.hb{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hb span{width:22px;height:1.5px;background:var(--p);border-radius:2px;}
+.hero{background:linear-gradient(160deg,#f9f6f2 0%,#f0ebe3 100%);padding:100px 32px;text-align:center;}
+.htag{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--a);margin-bottom:16px;}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:var(--p);line-height:1.12;margin-bottom:16px;letter-spacing:-1.5px;}
+.hero h1 b{font-weight:700;}
+.hero p{font-size:.94rem;color:var(--mu);max-width:440px;margin:0 auto 32px;line-height:1.9;}
+.hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.bp{background:var(--p);color:#fff;padding:13px 34px;border-radius:4px;font-weight:600;font-size:.8rem;letter-spacing:.5px;border:none;cursor:pointer;transition:background var(--tr);}
+.bp:hover{background:var(--a);}
+.bs{background:transparent;color:var(--p);padding:13px 34px;border-radius:4px;font-weight:600;font-size:.8rem;letter-spacing:.5px;border:1.5px solid var(--p);cursor:pointer;transition:all var(--tr);}
+.bs:hover{background:var(--p);color:#fff;}
+.trust{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:24px 32px;background:#fff;}
+.tri{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;text-align:center;}
+.ti h4{font-size:.74rem;font-weight:700;color:var(--p);letter-spacing:.8px;text-transform:uppercase;margin-bottom:2px;}
+.ti p{font-size:.74rem;color:var(--mu);}
+.sec{max-width:1200px;margin:0 auto;padding:60px 32px;}
+.st{font-size:1.4rem;font-weight:300;color:var(--p);letter-spacing:-.5px;margin-bottom:5px;}
+.st b{font-weight:700;}
+.ss{font-size:.76rem;color:var(--mu);margin-bottom:26px;}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.cat{background:#fff;border:1.5px solid var(--bd);border-radius:50px;padding:6px 18px;cursor:pointer;font-size:.76rem;font-weight:600;color:var(--mu);letter-spacing:.3px;transition:all var(--tr);}
+.cat:hover{border-color:var(--a);color:var(--a);}
+.cat.on{background:var(--p);border-color:var(--p);color:#fff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.card{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);transition:transform var(--tr),box-shadow var(--tr);}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh);}
+.ci{width:100%;height:210px;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--bd);}
+.ci img{width:100%;height:100%;object-fit:cover;}
+.phtxt{font-size:.66rem;color:var(--bd);letter-spacing:2px;text-transform:uppercase;text-align:center;padding:10px;}
+.cb2{padding:17px 18px;}
+.bdg{display:inline-block;border:1px solid var(--a);color:var(--a);font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:50px;margin-bottom:6px;letter-spacing:.6px;text-transform:uppercase;}
+.cn{font-size:.93rem;font-weight:600;color:var(--p);margin-bottom:4px;line-height:1.4;}
+.cd{font-size:.77rem;color:var(--mu);margin-bottom:13px;line-height:1.65;}
+.cf{display:flex;align-items:center;justify-content:space-between;}
+.pw{display:flex;flex-direction:column;}
+.pm{font-size:1.05rem;font-weight:700;color:var(--p);}
+.pa{font-size:.68rem;color:var(--mu);margin-top:1px;}
+.atc{background:var(--p);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:.74rem;font-weight:600;cursor:pointer;letter-spacing:.3px;transition:background var(--tr);}
+.atc:hover{background:var(--a);}
+.ovl{display:none;position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:200;}
+.ovl.on{display:block;}
+.sb{position:fixed;top:0;right:-430px;width:min(420px,100vw);height:100%;background:#fff;z-index:201;transition:right .3s;display:flex;flex-direction:column;border-left:1px solid var(--bd);}
+.sb.on{right:0;}
+.sbh{padding:20px 24px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;}
+.sbh h2{font-size:.78rem;font-weight:700;color:var(--p);letter-spacing:1px;text-transform:uppercase;}
+.xb{background:none;border:none;font-size:1rem;cursor:pointer;color:var(--mu);}
+.sbi{flex:1;overflow-y:auto;padding:16px 22px;}
+.emp{text-align:center;color:var(--mu);margin-top:54px;font-size:.84rem;}
+.cir{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--bd);}
+.cit{width:58px;height:58px;border-radius:6px;background:var(--soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--bd);font-size:.56rem;color:var(--mu);text-align:center;padding:3px;overflow:hidden;}
+.cit img{width:100%;height:100%;object-fit:cover;}
+.cii{flex:1;}
+.cin{font-size:.82rem;font-weight:600;color:var(--p);margin-bottom:2px;}
+.cip{font-size:.74rem;color:var(--mu);}
+.ciq{display:flex;align-items:center;gap:8px;margin-top:7px;}
+.qb{background:var(--soft);border:1px solid var(--bd);border-radius:3px;width:23px;height:23px;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--p);}
+.qn{font-size:.82rem;font-weight:600;min-width:15px;text-align:center;}
+.rm{background:none;border:none;color:var(--mu);cursor:pointer;font-size:.68rem;margin-left:auto;align-self:flex-start;}
+.sbf{padding:16px 22px;border-top:1px solid var(--bd);}
+.tr{display:flex;justify-content:space-between;font-size:.92rem;font-weight:700;color:var(--p);margin-bottom:3px;}
+.ta{font-size:.72rem;color:var(--mu);margin-bottom:13px;}
+.cob{width:100%;background:var(--p);color:#fff;border:none;border-radius:4px;padding:12px;font-size:.8rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:background var(--tr);}
+.cob:hover{background:var(--a);}
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;align-items:center;justify-content:center;padding:18px;}
+.mbg.on{display:flex;}
+.modal{background:#fff;border-radius:var(--r);width:100%;max-width:510px;max-height:91vh;overflow-y:auto;}
+.mh{padding:18px 24px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;}
+.mh h2{font-size:.76rem;font-weight:700;color:var(--p);letter-spacing:1px;text-transform:uppercase;}
+.mb{padding:20px 24px;}
+.fs{margin-bottom:18px;}
+.fs h3{font-size:.66rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bd);}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fg{margin-bottom:10px;}
+.fg label{display:block;font-size:.72rem;font-weight:600;color:var(--p);margin-bottom:4px;}
+.fg input,.fg select{width:100%;padding:8px 11px;border:1.5px solid var(--bd);border-radius:5px;font-size:.86rem;background:#fff;transition:border-color var(--tr);color:var(--tx);}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--a);}
+.fg input[readonly]{background:var(--soft);color:var(--mu);}
+.cpk{display:flex;gap:8px;margin-bottom:12px;}
+.cpk input{display:none;}
+.cpk label{flex:1;border:1.5px solid var(--bd);border-radius:5px;padding:8px 10px;cursor:pointer;font-size:.76rem;font-weight:600;text-align:center;transition:all var(--tr);color:var(--mu);}
+.cpk input:checked+label{border-color:var(--a);color:var(--a);background:#fdf8f5;}
+.c3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;}
+.sn{font-size:.68rem;color:var(--mu);margin-bottom:11px;}
+.os{background:var(--soft);border-radius:5px;padding:13px;margin-bottom:16px;border:1px solid var(--bd);}
+.ol{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px;}
+.ol.tot{font-weight:700;font-size:.88rem;border-top:1px solid var(--bd);padding-top:6px;margin-top:6px;}
+.pb{width:100%;background:var(--p);color:#fff;border:none;border-radius:4px;padding:13px;font-size:.84rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:background var(--tr);}
+.pb:hover{background:var(--a);}
+.sucbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:400;align-items:center;justify-content:center;}
+.sucbg.on{display:flex;}
+.sucb{background:#fff;border-radius:var(--r);padding:44px 36px;text-align:center;max-width:370px;width:90%;}
+.sucb h2{font-size:1.3rem;font-weight:300;color:var(--p);margin-bottom:10px;letter-spacing:-.5px;}
+.sucb h2 b{font-weight:700;}
+.sucb p{color:var(--mu);margin-bottom:4px;font-size:.82rem;}
+.sid{font-weight:700;font-size:.82rem;color:var(--a);margin:10px 0 20px;}
+.sucb button{background:var(--p);color:#fff;border:none;border-radius:4px;padding:10px 26px;font-size:.8rem;font-weight:600;cursor:pointer;letter-spacing:.5px;transition:background var(--tr);}
+.sucb button:hover{background:var(--a);}
+footer{background:var(--soft);border-top:1px solid var(--bd);padding:50px 32px 24px;}
+.ft{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+.ftb p{font-size:.76rem;color:var(--mu);line-height:1.9;max-width:190px;margin-top:9px;}
+.fc h4{font-size:.66rem;font-weight:700;color:var(--p);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:11px;}
+.fc a{display:block;font-size:.76rem;color:var(--mu);margin-bottom:6px;cursor:pointer;transition:color var(--tr);}
+.fc a:hover{color:var(--a);}
+.ftbot{max-width:1200px;margin:0 auto;border-top:1px solid var(--bd);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.7rem;color:var(--mu);}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--p);color:#fff;padding:9px 20px;border-radius:4px;font-size:.78rem;font-weight:600;z-index:500;transition:transform .3s;white-space:nowrap;}
 .toast.on{transform:translateX(-50%) translateY(0);}
-
-/* MOBILE */
+@media(max-width:900px){.ft{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){
-  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--white);flex-direction:column;padding:14px 20px;gap:14px;box-shadow:var(--sh);z-index:99;}
-  .nav-links.on{display:flex;}
-  .hamburger{display:flex;}
-  .f-row,.c3{grid-template-columns:1fr;}
+  .nl{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;flex-direction:column;padding:13px 20px;gap:13px;border-bottom:1px solid var(--bd);z-index:99;}
+  .nl.on{display:flex;} .hb{display:flex;}
+  .fr,.c3{grid-template-columns:1fr;}
   .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));}
-  .card-img{height:150px;}
-  .topbar{font-size:.72rem;}
-  .topbar-right{gap:6px;}
+  .ci{height:155px;} .sec{padding:42px 16px;} .hero{padding:66px 16px;}
+  .ft{grid-template-columns:1fr 1fr;gap:22px;}
 }
-</style>
-</head>
-<body>
-
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="live"><span class="dot"></span><span id="rateText">Loading rate...</span><span id="rateDate" style="opacity:.5"></span></div>
-  <div class="topbar-right">
-    <div class="cur-toggle">
-      <button class="on" id="btnAUD" onclick="setCur('AUD')">AUD $</button>
-      <button id="btnCNY" onclick="setCur('CNY')">CNY ¥</button>
-    </div>
-    <div class="lang-toggle">
-      <button class="on" id="btnEN" onclick="setLang('en')">EN</button>
-      <button id="btnZH" onclick="setLang('zh')">中文</button>
-    </div>
+@media(max-width:480px){.ft{grid-template-columns:1fr;}}
+</style></head><body>
+<div class="ubar">
+  <span id="rl">Loading rate...</span>
+  <div class="vsep"></div>
+  <div class="pill">
+    <button class="on" id="bAUD" onclick="setCur('AUD')">AUD</button>
+    <button id="bCNY" onclick="setCur('CNY')">CNY</button>
+  </div>
+  <div class="vsep"></div>
+  <div class="pill">
+    <button class="on" id="bEN" onclick="setLang('en')">EN</button>
+    <button id="bZH" onclick="setLang('zh')">&#20013;&#25991;</button>
   </div>
 </div>
 
-<!-- RATE BANNER -->
-<div class="rate-banner">
-  🏦 <span data-en="Today's Bank Rate:" data-zh="今日银行汇率:">Today's Bank Rate:</span>
-  <strong id="bannerRate">Loading...</strong><small id="bannerSrc"></small>
-</div>
-
-<!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <div class="logo">Cozy <span>Home</span></div>
-    <div class="nav-links" id="navLinks">
-      <a onclick="goTo('shop')"   data-en="Shop"       data-zh="商城">Shop</a>
-      <a onclick="goTo('categories')" data-en="Categories" data-zh="分类">Categories</a>
-      <a onclick="goTo('about')"  data-en="About"      data-zh="关于我们">About</a>
-      <a onclick="goTo('contact')" data-en="Contact"   data-zh="联系我们">Contact</a>
+  <div class="ni">
+    <div class="logo">Cozy <b>Home</b></div>
+    <div class="nl" id="nl">
+      <a onclick="goTo('shop')"  data-en="Shop" data-zh="&#21830;&#22478;">Shop</a>
+      <a onclick="goTo('cats')"  data-en="Categories" data-zh="&#20998;&#31867;">Categories</a>
+      <a onclick="goTo('foot')"  data-en="About" data-zh="&#20851;&#20110;">About</a>
+      <a onclick="goTo('foot')"  data-en="Contact" data-zh="&#32852;&#31995;">Contact</a>
     </div>
-    <div class="nav-right">
-      <button class="cart-btn" onclick="openCart()">
-        🛒 <span data-en="Cart" data-zh="购物车">Cart</span>
-        <span class="cart-count" id="cartCount">0</span>
+    <div class="nr">
+      <button class="cb" onclick="openCart()">
+        <span data-en="Cart" data-zh="&#36141;&#29289;&#36710;">Cart</span>
+        <span class="cc" id="cartCount">0</span>
       </button>
-      <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('on')">
+      <div class="hb" onclick="document.getElementById('nl').classList.toggle('on')">
         <span></span><span></span><span></span>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <h1 data-en="Sleep Better,<br/>Live Cosier 🛏️" data-zh="睡得更好,<br/>生活更舒适 🛏️">Sleep Better,<br/>Live Cosier 🛏️</h1>
-  <p data-en="Premium sheets, blankets, pillows and bedroom manchester — crafted for comfort."
-     data-zh="优质床单、毯子、枕头及卧室用品——专为舒适而生。">
-     Premium sheets, blankets, pillows and bedroom manchester — crafted for comfort.</p>
-  <div class="hero-btns">
-    <button class="btn-p" onclick="goTo('shop')"       data-en="Shop Now"          data-zh="立即购买">Shop Now</button>
-    <button class="btn-o" onclick="goTo('categories')" data-en="Browse Categories" data-zh="浏览分类">Browse Categories</button>
+  <div class="htag" data-en="Premium Bedroom Collection" data-zh="&#39640;&#21697;&#36136;&#21381;&#23460;&#31995;&#21015;">Premium Bedroom Collection</div>
+  <h1 data-en="Sleep Better,<br/><b>Live Cosier</b>" data-zh="&#30�;&#24471;&#26356;&#22909;&#65292;<br/><b>&#29983;&#27963;&#26356;&#33292;&#36827;</b>">Sleep Better,<br/><b>Live Cosier</b></h1>
+  <p data-en="Thoughtfully crafted sheets, blankets, pillows and manchester for every home." data-zh="&#31934;&#24515;&#35774;&#35745;&#30340;&#24202;&#21333;&#12289;&#27629;&#23376;&#12289;&#26410;&#22836;&#21450;&#21381;&#23460;&#29992;&#21697;&#65292;&#36866;&#21512;&#27ỗi&#20491;&#23478;&#24237;&#12002;">Thoughtfully crafted sheets, blankets, pillows and manchester for every home.</p>
+  <div class="hbtns">
+    <button class="bp" onclick="goTo('shop')" data-en="Shop Now" data-zh="&#31435;&#21363;&#36141;&#36141;">Shop Now</button>
+    <button class="bs" onclick="goTo('cats')" data-en="Browse Collection" data-zh="&#27993;&#35272;&#31995;&#21015;">Browse Collection</button>
   </div>
 </section>
 
-<!-- TRUST -->
 <div class="trust">
-  <div class="trust-inner">
-    <div class="trust-item"><div class="icon">🚚</div>
-      <h4 data-en="Free Shipping"   data-zh="免费配送">Free Shipping</h4>
-      <p  data-en="On all orders over A$80" data-zh="订单满A$80免运费">On all orders over A$80</p>
-    </div>
-    <div class="trust-item"><div class="icon">🔄</div>
-      <h4 data-en="Easy Returns"    data-zh="轻松退换">Easy Returns</h4>
-      <p  data-en="30-day hassle-free returns" data-zh="30天无忧退换">30-day hassle-free returns</p>
-    </div>
-    <div class="trust-item"><div class="icon">🔒</div>
-      <h4 data-en="Secure Payment"  data-zh="安全支付">Secure Payment</h4>
-      <p  data-en="Powered by Stripe" data-zh="由Stripe提供支持">Powered by Stripe</p>
-    </div>
-    <div class="trust-item"><div class="icon">💱</div>
-      <h4 data-en="AUD &amp; CNY"   data-zh="澳元与人民币">AUD &amp; CNY</h4>
-      <p  data-en="Live daily exchange rates" data-zh="每日实时汇率">Live daily exchange rates</p>
-    </div>
+  <div class="tri">
+    <div class="ti"><h4 data-en="Free Shipping" data-zh="&#20813;&#36153;&#37197;&#36865;">Free Shipping</h4><p data-en="Orders over A$80" data-zh="&#35746;&#21333;&#28385;A$80">Orders over A$80</p></div>
+    <div class="ti"><h4 data-en="30-Day Returns" data-zh="30&#22825;&#36864;&#25442;">30-Day Returns</h4><p data-en="Hassle-free policy" data-zh="&#26080;&#24841;&#36864;&#25442;">Hassle-free policy</p></div>
+    <div class="ti"><h4 data-en="Secure Checkout" data-zh="&#23433;&#20840;&#25903;&#20184;">Secure Checkout</h4><p data-en="Powered by Stripe" data-zh="&#30001;Stripe&#25552;&#20379;">Powered by Stripe</p></div>
+    <div class="ti"><h4 data-en="AUD &amp; CNY" data-zh="&#25320;&#20803;&#19982;&#20154;&#27665;&#24065;">AUD &amp; CNY</h4><p data-en="Live daily rates" data-zh="&#27ỗi&#26085;&#23454;&#26102;&#27719;&#29575;">Live daily rates</p></div>
   </div>
 </div>
 
-<!-- CATEGORIES -->
-<section class="section" id="categories">
-  <div class="sec-title" data-en="Shop by Category" data-zh="按分类购物">Shop by Category</div>
-  <div class="sec-sub"   data-en="Find exactly what you need" data-zh="找到您所需的一切">Find exactly what you need</div>
-  <div class="cats">
-    <div class="cat on" onclick="filterCat('all',this)"><div class="ci">🏠</div><h3 data-en="All Products" data-zh="全部商品">All Products</h3></div>
-    <div class="cat"    onclick="filterCat('sheets',this)"><div class="ci">🛏️</div><h3 data-en="Bed Sheets"  data-zh="床单套装">Bed Sheets</h3></div>
-    <div class="cat"    onclick="filterCat('blankets',this)"><div class="ci">🧣</div><h3 data-en="Blankets"  data-zh="毯子">Blankets</h3></div>
-    <div class="cat"    onclick="filterCat('pillows',this)"><div class="ci">😴</div><h3 data-en="Pillows"    data-zh="枕头">Pillows</h3></div>
-    <div class="cat"    onclick="filterCat('quilts',this)"><div class="ci">🌿</div><h3 data-en="Quilts"      data-zh="被子">Quilts</h3></div>
-    <div class="cat"    onclick="filterCat('towels',this)"><div class="ci">🛁</div><h3 data-en="Towels"      data-zh="毛巾">Towels</h3></div>
+<section class="sec" id="cats">
+  <div class="st" data-en="Our <b>Collection</b>" data-zh="&#31934;&#36873;<b>&#31995;&#21015;</b>">Our <b>Collection</b></div>
+  <div class="ss" id="pc"></div>
+  <div class="cats" id="catRow">
+    <div class="cat on" onclick="fCat('all',this)" data-en="All Products" data-zh="&#20840;&#37096;">All Products</div>
+    <div class="cat" onclick="fCat('sheets',this)" data-en="Bed Sheets" data-zh="&#24202;&#21333;">Bed Sheets</div>
+    <div class="cat" onclick="fCat('blankets',this)" data-en="Blankets" data-zh="&#27629;&#23376;">Blankets</div>
+    <div class="cat" onclick="fCat('pillows',this)" data-en="Pillows" data-zh="&#26410;&#22836;">Pillows</div>
+    <div class="cat" onclick="fCat('quilts',this)" data-en="Quilts" data-zh="&#34987;&#23376;">Quilts</div>
+    <div class="cat" onclick="fCat('towels',this)" data-en="Towels" data-zh="&#27611;&#24041;">Towels</div>
   </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="section" id="shop" style="padding-top:0">
-  <div class="sec-title" data-en="Our Products"                      data-zh="精选商品">Our Products</div>
-  <div class="sec-sub"   data-en="Quality comfort for every bedroom" data-zh="每间卧室的品质享受">Quality comfort for every bedroom</div>
   <div class="grid" id="grid"></div>
 </section>
+<div id="shop"></div>
 
-<!-- FOOTER -->
-<footer id="contact">
-  <div class="ft-inner">
-    <div class="ft-brand">
-      <div class="logo" style="color:#fff">Cozy <span>Home</span></div>
-      <p data-en="Premium bedroom manchester. Ships Australia-wide." data-zh="优质卧室用品,澳大利亚全国配送。">Premium bedroom manchester. Ships Australia-wide.</p>
+<footer id="foot">
+  <div class="ft">
+    <div class="ftb">
+      <div class="logo">Cozy <b>Home</b></div>
+      <p data-en="Premium bedroom manchester for every home. Shipping Australia-wide." data-zh="&#36866;&#21512;&#27ỗi&#20491;&#23478;&#24237;&#30340;&#20248;&#36136;&#21381;&#23460;&#29992;&#21697;&#12002;&#28500;&#22823;&#21033;&#20122;&#20840;&#22269;&#37197;&#36865;&#12002;">Premium bedroom manchester. Ships Australia-wide.</p>
     </div>
-    <div class="ft-col">
-      <h4 data-en="Shop"    data-zh="商城">Shop</h4>
-      <a data-en="Bed Sheets" data-zh="床单">Bed Sheets</a>
-      <a data-en="Blankets"   data-zh="毯子">Blankets</a>
-      <a data-en="Pillows"    data-zh="枕头">Pillows</a>
-      <a data-en="Quilts"     data-zh="被子">Quilts</a>
-      <a data-en="Towels"     data-zh="毛巾">Towels</a>
+    <div class="fc"><h4 data-en="Shop" data-zh="&#21830;&#22478;">Shop</h4>
+      <a data-en="Bed Sheets" data-zh="&#24202;&#21333;">Bed Sheets</a>
+      <a data-en="Blankets" data-zh="&#27629;&#23376;">Blankets</a>
+      <a data-en="Pillows" data-zh="&#26410;&#22836;">Pillows</a>
+      <a data-en="Quilts" data-zh="&#34987;&#23376;">Quilts</a>
+      <a data-en="Towels" data-zh="&#27611;&#24041;">Towels</a>
     </div>
-    <div class="ft-col">
-      <h4 data-en="Help"         data-zh="帮助">Help</h4>
-      <a data-en="Shipping Info" data-zh="配送信息">Shipping Info</a>
-      <a data-en="Returns"       data-zh="退货政策">Returns</a>
-      <a data-en="Size Guide"    data-zh="尺码指南">Size Guide</a>
-      <a data-en="FAQ"           data-zh="常见问题">FAQ</a>
+    <div class="fc"><h4 data-en="Help" data-zh="&#24110;&#21161;">Help</h4>
+      <a data-en="Shipping" data-zh="&#37197;&#36865;">Shipping</a>
+      <a data-en="Returns" data-zh="&#36864;&#36135;">Returns</a>
+      <a data-en="Size Guide" data-zh="&#23610;&#30721;">Size Guide</a>
+      <a data-en="FAQ" data-zh="&#24120;&#35265;&#38382;&#39064;">FAQ</a>
     </div>
-    <div class="ft-col">
-      <h4 data-en="Contact" data-zh="联系我们">Contact</h4>
+    <div class="fc"><h4 data-en="Contact" data-zh="&#32852;&#31995;">Contact</h4>
       <a>hello@cozyhome.com.au</a>
       <a>1300 COZY HOME</a>
-      <a data-en="Instagram" data-zh="Instagram">Instagram</a>
-      <a data-en="WeChat"    data-zh="微信">WeChat</a>
+      <a>Instagram</a>
+      <a data-en="WeChat" data-zh="&#24494;&#20449;">WeChat</a>
     </div>
   </div>
-  <div class="ft-bot">
-    <span>© 2026 Cozy Home. All rights reserved. ABN 00 000 000 000</span>
-    <span data-en="Exchange rates via Open Exchange Rates" data-zh="汇率来源:Open Exchange Rates">Exchange rates via Open Exchange Rates</span>
+  <div class="ftbot">
+    <span>2026 Cozy Home. All rights reserved. ABN 00 000 000 000</span>
+    <span data-en="Rates via Open Exchange Rates" data-zh="&#27719;&#29575;&#65306;Open Exchange Rates">Rates via Open Exchange Rates</span>
   </div>
 </footer>
 
-<!-- CART SIDEBAR -->
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-<div class="sidebar" id="sidebar">
-  <div class="sb-head">
-    <h2><span data-en="Your Cart 🛒" data-zh="购物车 🛒">Your Cart 🛒</span></h2>
-    <button class="x-btn" onclick="closeCart()">✕</button>
-  </div>
-  <div class="sb-items" id="sbItems"><div class="empty" data-en="Your cart is empty 😴" data-zh="购物车是空的 😴">Your cart is empty 😴</div></div>
-  <div class="sb-foot" id="sbFoot" style="display:none">
-    <div class="tot-row">
-      <span data-en="Total" data-zh="合计">Total</span>
-      <span id="totAUD">A$0.00</span>
-    </div>
-    <div class="tot-alt" id="totCNY"></div>
-    <button class="co-btn" onclick="openCheckout()" data-en="Proceed to Checkout →" data-zh="去结账 →">Proceed to Checkout →</button>
+<div class="ovl" id="ovl" onclick="closeCart()"></div>
+<div class="sb" id="sbEl">
+  <div class="sbh"><h2 data-en="Your Cart" data-zh="&#36141;&#29289;&#36710;">Your Cart</h2><button class="xb" onclick="closeCart()">&#x2715;</button></div>
+  <div class="sbi" id="sbi"><div class="emp" data-en="Your cart is empty" data-zh="&#36141;&#29289;&#36710;&#26159;&#31354;&#30340;">Your cart is empty</div></div>
+  <div class="sbf" id="sbf" style="display:none">
+    <div class="tr"><span data-en="Total" data-zh="&#21512;&#35745;">Total</span><span id="tAUD">A$0.00</span></div>
+    <div class="ta" id="tCNY"></div>
+    <button class="cob" onclick="openCO()" data-en="Proceed to Checkout" data-zh="&#21435;&#32467;&#36134;">Proceed to Checkout</button>
   </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
-<div class="modal-bg" id="modalBg">
+<div class="mbg" id="mbg">
   <div class="modal">
-    <div class="mo-head">
-      <h2 data-en="Checkout 🔒" data-zh="结账 🔒">Checkout 🔒</h2>
-      <button class="x-btn" onclick="closeCheckout()">✕</button>
-    </div>
-    <div class="mo-body">
-      <div class="ord-sum" id="ordSum"></div>
+    <div class="mh"><h2 data-en="Checkout" data-zh="&#32467;&#36134;">Checkout</h2><button class="xb" onclick="closeCO()">&#x2715;</button></div>
+    <div class="mb">
+      <div class="os" id="os"></div>
       <form onsubmit="placeOrder(event)">
-        <div class="fs">
-          <h3 data-en="Contact" data-zh="联系方式">Contact</h3>
-          <div class="fg"><label data-en="Full Name *" data-zh="姓名 *">Full Name *</label><input id="fn" required placeholder="Jane Smith"/></div>
-          <div class="f-row">
-            <div class="fg"><label data-en="Email *" data-zh="邮箱 *">Email *</label><input id="fe" type="email" required placeholder="jane@email.com"/></div>
-            <div class="fg"><label data-en="Phone" data-zh="电话">Phone</label><input id="fp" type="tel" placeholder="04XX XXX XXX"/></div>
+        <div class="fs"><h3 data-en="Contact Details" data-zh="&#32852;&#31995;&#26041;&#24335;">Contact Details</h3>
+          <div class="fg"><label data-en="Full Name *" data-zh="&#22995;&#21517; *">Full Name *</label><input id="fn" required placeholder="Jane Smith"/></div>
+          <div class="fr">
+            <div class="fg"><label data-en="Email *" data-zh="&#37038;&#31665; *">Email *</label><input id="fe" type="email" required placeholder="jane@email.com"/></div>
+            <div class="fg"><label data-en="Phone" data-zh="&#30005;&#35805;">Phone</label><input id="fp" type="tel" placeholder="04XX XXX XXX"/></div>
           </div>
-          <div class="fg"><label data-en="WeChat ID (optional)" data-zh="微信号(选填)">WeChat ID (optional)</label><input id="fw" placeholder="WeChat ID"/></div>
+          <div class="fg"><label data-en="WeChat (optional)" data-zh="&#24494;&#20449;&#21495;(&#36873;&#22635;)">WeChat (optional)</label><input id="fw" placeholder="WeChat ID"/></div>
         </div>
-        <div class="fs">
-          <h3 data-en="Shipping Address" data-zh="收货地址">Shipping Address</h3>
-          <div class="fg"><label data-en="Street Address *" data-zh="街道地址 *">Street Address *</label><input id="fa" required placeholder="123 Main Street"/></div>
-          <div class="f-row">
-            <div class="fg"><label data-en="City *" data-zh="城市 *">City *</label><input id="fc" required placeholder="Melbourne"/></div>
-            <div class="fg"><label data-en="State *" data-zh="州 *">State *</label>
-              <select id="fst" required><option value="">Select...</option>
-                <option>VIC</option><option>NSW</option><option>QLD</option>
-                <option>WA</option><option>SA</option><option>TAS</option><option>ACT</option><option>NT</option>
-              </select>
-            </div>
+        <div class="fs"><h3 data-en="Shipping Address" data-zh="&#25910;&#36135;&#22320;&#22336;">Shipping Address</h3>
+          <div class="fg"><label data-en="Street *" data-zh="&#34453;&#36947; *">Street *</label><input id="fa" required placeholder="123 Main Street"/></div>
+          <div class="fr">
+            <div class="fg"><label data-en="City *" data-zh="&#22478;&#24066; *">City *</label><input id="fc" required placeholder="Melbourne"/></div>
+            <div class="fg"><label data-en="State *" data-zh="&#24030; *">State *</label>
+              <select id="fs2" required><option value="">Select...</option>
+                <option>VIC</option><option>NSW</option><option>QLD</option><option>WA</option>
+                <option>SA</option><option>TAS</option><option>ACT</option><option>NT</option>
+              </select></div>
           </div>
-          <div class="f-row">
-            <div class="fg"><label data-en="Postcode *" data-zh="邮编 *">Postcode *</label><input id="fpc" required placeholder="3000" maxlength="4"/></div>
-            <div class="fg"><label data-en="Country" data-zh="国家">Country</label><input value="Australia" readonly/></div>
+          <div class="fr">
+            <div class="fg"><label data-en="Postcode *" data-zh="&#37038;&#32534; *">Postcode *</label><input id="fpc" required placeholder="3000" maxlength="4"/></div>
+            <div class="fg"><label data-en="Country" data-zh="&#22269;&#23478;">Country</label><input value="Australia" readonly/></div>
           </div>
         </div>
-        <div class="fs">
-          <h3 data-en="Payment Currency" data-zh="结账货币">Payment Currency</h3>
-          <div class="cur-pick">
-            <input type="radio" name="pc" id="pcAUD" value="AUD" checked onchange="updPayAmt()">
-            <label for="pcAUD">🇦🇺 AUD (A$)</label>
-            <input type="radio" name="pc" id="pcCNY" value="CNY" onchange="updPayAmt()">
-            <label for="pcCNY">🇨🇳 CNY (¥)</label>
+        <div class="fs"><h3 data-en="Payment Currency" data-zh="&#25903;&#20184;&#36135;&#24065;">Payment Currency</h3>
+          <div class="cpk">
+            <input type="radio" name="pc" id="pcA" value="AUD" checked onchange="updAmt()">
+            <label for="pcA">AUD &mdash; Australian Dollar</label>
+            <input type="radio" name="pc" id="pcC" value="CNY" onchange="updAmt()">
+            <label for="pcC">CNY &mdash; Chinese Yuan</label>
           </div>
-          <div id="payAmt" style="font-size:.88rem;color:var(--muted);margin-bottom:12px;"></div>
+          <div id="pamt" style="font-size:.76rem;color:var(--mu);margin-bottom:10px;"></div>
         </div>
-        <div class="fs">
-          <h3 data-en="Card Details" data-zh="银行卡信息">Card Details</h3>
-          <div class="stripe-note" data-en="🔒 Secured by Stripe — your card details are encrypted" data-zh="🔒 由Stripe加密保护您的银行卡信息">🔒 Secured by Stripe — your card details are encrypted</div>
-          <div class="fg"><label data-en="Card Number *" data-zh="卡号 *">Card Number *</label><input id="fcc" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"/></div>
+        <div class="fs"><h3 data-en="Card Details" data-zh="&#38134;&#34892;&#21345;&#20449;&#24687;">Card Details</h3>
+          <div class="sn" data-en="Secured by Stripe &mdash; card details are encrypted." data-zh="&#30001;Stripe&#21152;&#23494;&#20445;&#25252;&#12002;">Secured by Stripe &mdash; card details are encrypted.</div>
+          <div class="fg"><label data-en="Card Number *" data-zh="&#21345;&#21495; *">Card Number *</label><input id="fcc" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"/></div>
           <div class="c3">
-            <div class="fg"><label data-en="Name on Card *" data-zh="持卡人姓名 *">Name on Card *</label><input id="fcn" required placeholder="Jane Smith"/></div>
-            <div class="fg"><label data-en="Expiry *" data-zh="有效期 *">Expiry *</label><input id="fex" required placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"/></div>
+            <div class="fg"><label data-en="Name on Card *" data-zh="&#25345;&#21345;&#20154;&#23713;&#21517; *">Name on Card *</label><input id="fcn" required placeholder="Jane Smith"/></div>
+            <div class="fg"><label data-en="Expiry *" data-zh="&#26377;&#25928;&#26399; *">Expiry *</label><input id="fex" required placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"/></div>
             <div class="fg"><label>CVV *</label><input id="fcv" required placeholder="123" maxlength="4"/></div>
           </div>
         </div>
-        <button type="submit" class="pay-btn" id="payBtn" data-en="Place Order & Pay →" data-zh="下单支付 →">Place Order & Pay →</button>
+        <button type="submit" class="pb" id="payBtn" data-en="Place Order &amp; Pay" data-zh="&#19979;&#21333;&#25903;&#20184;">Place Order &amp; Pay</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- SUCCESS -->
-<div class="suc-bg" id="sucBg">
-  <div class="suc-box">
-    <div class="si">🎉</div>
-    <h2 data-en="Order Placed!" data-zh="订单成功!">Order Placed!</h2>
-    <p data-en="Thank you! Your order has been received." data-zh="感谢您的订购!您的订单已收到。">Thank you! Your order has been received.</p>
-    <p data-en="A confirmation email will be sent shortly." data-zh="确认邮件将很快发送。">A confirmation email will be sent shortly.</p>
-    <p class="suc-id" id="sucId"></p>
-    <button onclick="closeSuc()" data-en="Continue Shopping" data-zh="继续购物">Continue Shopping</button>
+<div class="sucbg" id="sucBg">
+  <div class="sucb">
+    <h2 data-en="Order <b>Confirmed</b>" data-zh="&#35746;&#21333;<b>&#24050;&#30830;&#35748;</b>">Order <b>Confirmed</b></h2>
+    <p data-en="Thank you. Your order has been received." data-zh="&#24863;&#35874;&#24744;&#30340;&#35746;&#36135;&#65281;&#35746;&#21333;&#24050;&#25910;&#21040;&#12002;">Thank you. Your order has been received.</p>
+    <p data-en="A confirmation email will be sent shortly." data-zh="&#30830;&#35748;&#37038;&#20214;&#23558;&#24456;&#24555;&#21457;&#36865;&#12002;">A confirmation email will be sent shortly.</p>
+    <p class="sid" id="sucId"></p>
+    <button onclick="closeSuc()" data-en="Continue Shopping" data-zh="&#32493;&#32493;&#36141;&#29289;">Continue Shopping</button>
   </div>
 </div>
-
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ── TRANSLATIONS ──
-const T = {
-  en: {
-    addedToCart: (n) => `✓ ${n} added to cart`,
-    cartEmpty: "Your cart is empty 😴",
-    processing: "Processing...",
-    payBtn: "Place Order & Pay →",
-    eachPrice: (p, c) => `A$${p} each  ≈ ¥${c}`,
-    youPayAUD: (a) => `You will pay: A$${a} AUD`,
-    youPayCNY: (c, r) => `You will pay: ¥${c} CNY  (1 AUD = ${r} CNY)`,
-    free: "FREE",
-    shipping: "Shipping",
-    total: "Total (AUD)",
-  },
-  zh: {
-    addedToCart: (n) => `✓ ${n} 已加入购物车`,
-    cartEmpty: "购物车是空的 😴",
-    processing: "处理中...",
-    payBtn: "下单支付 →",
-    eachPrice: (p, c) => `A$${p} 每件  ≈ ¥${c}`,
-    youPayAUD: (a) => `您将支付:A$${a} 澳元`,
-    youPayCNY: (c, r) => `您将支付:¥${c} 人民币  (1澳元 = ${r}元)`,
-    free: "免运费",
-    shipping: "运费",
-    total: "合计 (AUD)",
-  }
+const T={
+  en:{add:n=>n+" added to cart",empty:"Your cart is empty",proc:"Processing...",pay:"Place Order & Pay",
+      pr:(p,c)=>"A$"+p+" / ¥"+c,pAUD:a=>"You will pay: A$"+a,pCNY:(c,r)=>"You will pay: ¥"+c+" CNY (1 AUD = "+r+")",
+      free:"Free",ship:"Shipping",tot:"Order Total",itm:n=>n+" item"+(n===1?"":"s")},
+  zh:{add:n=>n+"已加入购物车",empty:"购物车是空的",proc:"处理中...",pay:"下单支付",
+      pr:(p,c)=>"A$"+p+" / ¥"+c,pAUD:a=>"您将支付：A$"+a,pCNY:(c,r)=>"您将支付：¥"+c+" 人民币（1澳元="+r+"元）",
+      free:"免运费",ship:"运费",tot:"订单合计",itm:n=>n+" 件商品"}
 };
-
-// ── PRODUCTS ──
-const P = [
-  {id:1,  en:{name:"Egyptian Cotton Sheet Set",   desc:"400 thread count, silky smooth. Queen/King/Double."},
-          zh:{name:"埃及棉床单套装",               desc:"400支,丝滑细腻,适合皇后/大/双人床。"},
-          cat:"sheets",   price:89.95, badge:"Bestseller", emoji:"🛏️"},
-  {id:2,  en:{name:"Bamboo Sheet Set",             desc:"100% organic bamboo, breathable & hypoallergenic."},
-          zh:{name:"竹纤维床单套装",               desc:"100%有机竹纤维,透气低敏。"},
-          cat:"sheets",   price:79.95, badge:"Eco",        emoji:"🌿"},
-  {id:3,  en:{name:"Fitted Sheet — King",           desc:"Deep pocket fitted sheet, elasticated all around."},
-          zh:{name:"床笠(King尺寸)",              desc:"深袋设计,四周松紧,贴合床垫。"},
-          cat:"sheets",   price:49.95, badge:"",           emoji:"📐"},
-  {id:4,  en:{name:"Luxury Sherpa Blanket",         desc:"Ultra-soft sherpa fleece, perfect for cool nights."},
-          zh:{name:"奢华雪巴绒毯",                  desc:"超柔软雪巴绒,凉夜必备。"},
-          cat:"blankets", price:69.95, badge:"New",        emoji:"🧣"},
-  {id:5,  en:{name:"Waffle Knit Throw",             desc:"Stylish waffle knit throw, 100% cotton."},
-          zh:{name:"华夫格针织毯",                  desc:"时尚华夫格设计,100%纯棉。"},
-          cat:"blankets", price:54.95, badge:"",           emoji:"🍫"},
-  {id:6,  en:{name:"Weighted Blanket 7kg",          desc:"Therapeutic weighted blanket for deeper sleep."},
-          zh:{name:"重力毯 7公斤",                  desc:"助眠重力毯,睡眠更深沉。"},
-          cat:"blankets", price:119.95,badge:"Popular",    emoji:"⚖️"},
-  {id:7,  en:{name:"Memory Foam Pillow",            desc:"Contour memory foam, medium-firm support."},
-          zh:{name:"记忆棉枕头",                    desc:"曲线记忆棉,中等硬度支撑。"},
-          cat:"pillows",  price:59.95, badge:"Bestseller", emoji:"😴"},
-  {id:8,  en:{name:"Pillowcase Set (2 pack)",       desc:"Standard & king size, 300 thread count cotton."},
-          zh:{name:"枕套套装(2件)",               desc:"标准/大号,300支纯棉。"},
-          cat:"pillows",  price:29.95, badge:"",           emoji:"🎁"},
-  {id:9,  en:{name:"Duck Down Pillow",              desc:"Soft duck down fill, naturally breathable."},
-          zh:{name:"鸭绒枕头",                      desc:"柔软鸭绒填充,天然透气。"},
-          cat:"pillows",  price:74.95, badge:"Premium",    emoji:"🪶"},
-  {id:10, en:{name:"All-Season Quilt 400GSM",       desc:"Microfibre fill, suitable for all seasons."},
-          zh:{name:"四季被 400GSM",                 desc:"超细纤维填充,四季适用。"},
-          cat:"quilts",   price:99.95, badge:"Bestseller", emoji:"🌸"},
-  {id:11, en:{name:"Winter Goose Down Doona",       desc:"700GSM goose down, supremely warm."},
-          zh:{name:"冬季鹅绒被",                    desc:"700GSM鹅绒填充,极致保暖。"},
-          cat:"quilts",   price:189.95,badge:"Premium",    emoji:"❄️"},
-  {id:12, en:{name:"Summer Bamboo Quilt",           desc:"Lightweight bamboo fill, ideal for warm months."},
-          zh:{name:"夏季竹纤维薄被",               desc:"轻盈竹纤维填充,夏季必备。"},
-          cat:"quilts",   price:89.95, badge:"New",        emoji:"☀️"},
-  {id:13, en:{name:"Bath Towel Set (4 pack)",       desc:"600GSM Egyptian cotton, ultra absorbent."},
-          zh:{name:"浴巾套装(4件)",               desc:"600GSM埃及棉,超强吸水。"},
-          cat:"towels",   price:64.95, badge:"",           emoji:"🛁"},
-  {id:14, en:{name:"Luxury Hand Towel Set",         desc:"Soft and quick-dry, 500GSM cotton."},
-          zh:{name:"奢华洗手巾套装",               desc:"柔软速干,500GSM纯棉。"},
-          cat:"towels",   price:39.95, badge:"",           emoji:"🤲"},
-  {id:15, en:{name:"Beach Towel — Oversized",        desc:"180x100cm, sand-free microfibre."},
-          zh:{name:"超大沙滩巾",                    desc:"180x100cm,防沙超细纤维。"},
-          cat:"towels",   price:44.95, badge:"Summer",     emoji:"🏖️"},
-  {id:16, en:{name:"Bed Runner & Cushion Set",      desc:"Decorative bed runner + 2 matching cushion covers."},
-          zh:{name:"床旗抱枕套装",                  desc:"装饰床旗 + 2个配套抱枕套。"},
-          cat:"sheets",   price:55.95, badge:"New",        emoji:"💛"},
+const P=[
+  {id:1,en:{name:"Egyptian Cotton Sheet Set",desc:"400 thread count, silky smooth. Queen, King and Double."},zh:{name:"埃及棉床单套装",desc:"400支，丝滑细腔，适合多种尺寸。"},cat:"sheets",price:89.95,badge:"Bestseller"},
+  {id:2,en:{name:"Bamboo Sheet Set",desc:"100% organic bamboo, breathable and hypoallergenic."},zh:{name:"竹纤维床单套装",desc:"100%有机竹纤维，透气低敏。"},cat:"sheets",price:79.95,badge:"Eco"},
+  {id:3,en:{name:"Fitted Sheet - King",desc:"Deep pocket with full elasticated edging."},zh:{name:"床笠（King尺寸）",desc:"深袋设计，四周松紧边。"},cat:"sheets",price:49.95,badge:""},
+  {id:4,en:{name:"Luxury Sherpa Blanket",desc:"Ultra-soft double-sided sherpa fleece."},zh:{name:"奢华雪巴绒毯",desc:"超柔软双面雪巴绒。"},cat:"blankets",price:69.95,badge:"New"},
+  {id:5,en:{name:"Waffle Knit Throw",desc:"Elegant waffle texture, 100% cotton."},zh:{name:"华夫格针织毯",desc:"优雅华夫格纹，100%纯棉。"},cat:"blankets",price:54.95,badge:""},
+  {id:6,en:{name:"Weighted Blanket 7kg",desc:"Deep-pressure blanket for calmer, deeper sleep."},zh:{name:"重力毯 7公斤",desc:"深压力助眠毯，让睡眠更深。"},cat:"blankets",price:119.95,badge:"Popular"},
+  {id:7,en:{name:"Memory Foam Pillow",desc:"Contoured memory foam, medium-firm support."},zh:{name:"记忆棉枝头",desc:"曲线记忆棉，中等硬度支撑。"},cat:"pillows",price:59.95,badge:"Bestseller"},
+  {id:8,en:{name:"Pillowcase Set - 2 Pack",desc:"Standard and king size, 300 thread count cotton."},zh:{name:"枝套套装（2件）",desc:"300支精梳纯棉。"},cat:"pillows",price:29.95,badge:""},
+  {id:9,en:{name:"Duck Down Pillow",desc:"Genuine duck down, soft and breathable."},zh:{name:"鸭绒枝头",desc:"真正鸭绒士充，柔软透气。"},cat:"pillows",price:74.95,badge:"Premium"},
+  {id:10,en:{name:"All-Season Quilt 400GSM",desc:"Premium microfibre fill for year-round comfort."},zh:{name:"四季被 400GSM",desc:"优质超细维维士充，四季适用。"},cat:"quilts",price:99.95,badge:"Bestseller"},
+  {id:11,en:{name:"Winter Goose Down Doona",desc:"700GSM goose down for supremely warm winters."},zh:{name:"冬季鹅绒被",desc:"700GSM鹅绒士充，冬夜极致保暖。"},cat:"quilts",price:189.95,badge:"Premium"},
+  {id:12,en:{name:"Summer Bamboo Quilt",desc:"Lightweight bamboo fill, cool for warm months."},zh:{name:"夏季竹纤维薄被",desc:"轻盈竹纤维士充，夏季清凉。"},cat:"quilts",price:89.95,badge:"New"},
+  {id:13,en:{name:"Bath Towel Set - 4 Pack",desc:"600GSM Egyptian cotton, ultra absorbent."},zh:{name:"浴巾套装（4件）",desc:"600GSM埃及棉，超强吸水。"},cat:"towels",price:64.95,badge:""},
+  {id:14,en:{name:"Luxury Hand Towel Set",desc:"Soft, quick-dry 500GSM cotton."},zh:{name:"奠华洗手巾套装",desc:"柔软速干，500GSM纯棉。"},cat:"towels",price:39.95,badge:""},
+  {id:15,en:{name:"Oversized Beach Towel",desc:"Sand-free microfibre, 180 x 100cm."},zh:{name:"超大沙滩巾",desc:"防沙超细维维，180x100cm。"},cat:"towels",price:44.95,badge:"Summer"},
+  {id:16,en:{name:"Bed Runner & Cushion Set",desc:"Decorative runner with 2 matching cushion covers."},zh:{name:"床旗抛枝套装",desc:"装饰床旗加2个配套抛枝套。"},cat:"sheets",price:55.95,badge:"New"},
 ];
+let lang=localStorage.getItem("chl")||"en",cur="AUD",rate=4.75,rSrc="est",cCat="all";
+let cart=JSON.parse(localStorage.getItem("ch6_cart")||"[]");
 
-// ── STATE ──
-let lang = localStorage.getItem("ch_lang") || "en";
-let curDisp = "AUD";
-let rate = 4.75, rateSrc = "estimated";
-let curCat = "all";
-let cart = JSON.parse(localStorage.getItem("ch3_cart") || "[]");
-
-// ── LANGUAGE ──
-function setLang(l) {
-  lang = l;
-  localStorage.setItem("ch_lang", l);
-  document.getElementById("btnEN").classList.toggle("on", l === "en");
-  document.getElementById("btnZH").classList.toggle("on", l === "zh");
-  // Update all data-en/data-zh elements
-  document.querySelectorAll("[data-en]").forEach(el => {
-    const txt = el.getAttribute("data-" + l);
-    if (txt) el.innerHTML = txt;
-  });
-  renderProds(curCat);
-  renderCart();
+function setLang(l){
+  lang=l;localStorage.setItem("chl",l);
+  document.getElementById("bEN").classList.toggle("on",l==="en");
+  document.getElementById("bZH").classList.toggle("on",l==="zh");
+  document.querySelectorAll("[data-en]").forEach(el=>{const v=el.getAttribute("data-"+l);if(v)el.innerHTML=v;});
+  renderP(cCat);renderCart();
 }
-
-// ── EXCHANGE RATE ──
-async function fetchRate() {
-  const KEY="ch_rate", DATE="ch_date", today=new Date().toISOString().slice(0,10);
-  const cd=localStorage.getItem(DATE), cr=parseFloat(localStorage.getItem(KEY));
-  if(cd===today && cr>0){rate=cr; rateSrc="cached"; updateRateUI(today); return;}
-  try {
-    const r=await fetch("https://open.er-api.com/v6/latest/AUD");
-    const d=await r.json();
-    if(d.rates && d.rates.CNY){
-      rate=parseFloat(d.rates.CNY.toFixed(4)); rateSrc="Open Exchange Rates";
-      localStorage.setItem(KEY,rate); localStorage.setItem(DATE,today);
-      updateRateUI(today); return;
-    }
-  } catch(e){}
-  try {
-    const r=await fetch("https://api.exchangerate.host/latest?base=AUD&symbols=CNY");
-    const d=await r.json();
-    if(d.rates && d.rates.CNY){
-      rate=parseFloat(d.rates.CNY.toFixed(4)); rateSrc="ExchangeRate.host";
-      localStorage.setItem(KEY,rate); localStorage.setItem(DATE,today);
-      updateRateUI(today); return;
-    }
-  } catch(e){}
-  if(cr>0){rate=cr; rateSrc="last known";}
-  updateRateUI(today);
+async function fetchRate(){
+  const K="chr",D="chd",today=new Date().toISOString().slice(0,10);
+  const cd=localStorage.getItem(D),cr=parseFloat(localStorage.getItem(K));
+  if(cd===today&&cr>0){rate=cr;rSrc="live";setRL(today);return;}
+  try{const r=await fetch("https://open.er-api.com/v6/latest/AUD");const d=await r.json();
+    if(d.rates?.CNY){rate=parseFloat(d.rates.CNY.toFixed(4));rSrc="live";localStorage.setItem(K,rate);localStorage.setItem(D,today);setRL(today);return;}}catch(e){}
+  try{const r=await fetch("https://api.exchangerate.host/latest?base=AUD&symbols=CNY");const d=await r.json();
+    if(d.rates?.CNY){rate=parseFloat(d.rates.CNY.toFixed(4));rSrc="live";localStorage.setItem(K,rate);localStorage.setItem(D,today);setRL(today);return;}}catch(e){}
+  if(cr>0){rate=cr;rSrc="cached";}setRL(today);
+}
+function setRL(dt){
+  document.getElementById("rl").textContent="1 AUD = ¥"+rate.toFixed(4)+" CNY ("+rSrc+" · "+dt.slice(0,10)+")";
+  renderP(cCat);renderCart();
 }
 function cny(a){return(a*rate).toFixed(2);}
-function updateRateUI(dt){
-  const buy=(rate*.993).toFixed(4), sell=(rate*1.007).toFixed(4);
-  document.getElementById("rateText").textContent=`A$1 = ¥${rate.toFixed(4)} CNY`;
-  document.getElementById("rateDate").textContent=`· ${dt.slice(0,10)}`;
-  document.getElementById("bannerRate").innerHTML=
-    `A$1 = ¥${rate.toFixed(4)} &nbsp;|&nbsp; `+
-    (lang==="zh"?"买入":"Bank Buy")+`: ¥${buy} &nbsp;|&nbsp; `+
-    (lang==="zh"?"卖出":"Bank Sell")+`: ¥${sell}`;
-  document.getElementById("bannerSrc").textContent=`· ${rateSrc}`;
-  renderProds(curCat); renderCart();
-}
-
-// ── CURRENCY ──
-function setCur(c){
-  curDisp=c;
-  document.getElementById("btnAUD").classList.toggle("on",c==="AUD");
-  document.getElementById("btnCNY").classList.toggle("on",c==="CNY");
-  renderProds(curCat); renderCart();
-}
-function fmt(a){return curDisp==="CNY"?`¥${cny(a)}`:`A$${a.toFixed(2)}`;}
-function fmtAlt(a){return curDisp==="CNY"?`≈ A$${a.toFixed(2)}`:`≈ ¥${cny(a)} CNY`;}
-
-// ── PRODUCTS ──
-function renderProds(cat){
-  curCat=cat;
+function fmt(a){return cur==="CNY"?"¥"+cny(a):"A$"+a.toFixed(2);}
+function fmtA(a){return cur==="CNY"?"A$"+a.toFixed(2):"¥"+cny(a);}
+function setCur(c){cur=c;document.getElementById("bAUD").classList.toggle("on",c==="AUD");document.getElementById("bCNY").classList.toggle("on",c==="CNY");renderP(cCat);renderCart();}
+function renderP(cat){
+  cCat=cat;
   const list=cat==="all"?P:P.filter(p=>p.cat===cat);
+  document.getElementById("pc").textContent=T[lang].itm(list.length);
+  const at=lang==="zh"?"加入购物车":"Add to Cart";
   document.getElementById("grid").innerHTML=list.map(p=>{
-    const nm=p[lang]?p[lang].name:p.en.name;
-    const ds=p[lang]?p[lang].desc:p.en.desc;
-    const atcTxt=lang==="zh"?"加入购物车":"Add to Cart";
-    return `<div class="card">
-      <div class="card-img">${p.emoji}</div>
-      <div class="card-body">
-        ${p.badge?`<span class="badge">${p.badge}</span>`:""}
-        <div class="card-name">${nm}</div>
-        <div class="card-desc">${ds}</div>
-        <div class="card-foot">
-          <div class="price-wrap">
-            <span class="price-main">${fmt(p.price)}</span>
-            <span class="price-alt">${fmtAlt(p.price)}</span>
-          </div>
-          <button class="atc" onclick="addCart(${p.id})">${atcTxt}</button>
-        </div>
-      </div>
-    </div>`;
+    const nm=p[lang].name,ds=p[lang].desc;
+    return`<div class="card"><div class="ci"><div class="phtxt">${nm.substring(0,14)}</div></div><div class="cb2">${p.badge?`<span class="bdg">${p.badge}</span>`:""}<div class="cn">${nm}</div><div class="cd">${ds}</div><div class="cf"><div class="pw"><span class="pm">${fmt(p.price)}</span><span class="pa">${fmtA(p.price)}</span></div><button class="atc" onclick="addC(${p.id})">${at}</button></div></div></div>`;
   }).join("");
 }
-function filterCat(c,el){
-  document.querySelectorAll(".cat").forEach(x=>x.classList.remove("on"));
-  el.classList.add("on"); renderProds(c);
+function fCat(c,el){document.querySelectorAll(".cat").forEach(x=>x.classList.remove("on"));el.classList.add("on");renderP(c);}
+function addC(id){
+  const p=P.find(x=>x.id===id),ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else cart.push({id:p.id,en:p.en.name,zh:p.zh.name,price:p.price,qty:1});
+  saveC();toast(T[lang].add(p[lang].name));renderCart();
 }
-
-// ── CART ──
-function addCart(id){
-  const p=P.find(x=>x.id===id), ex=cart.find(x=>x.id===id);
-  if(ex)ex.qty++; else cart.push({id:p.id,enName:p.en.name,zhName:p.zh.name,price:p.price,emoji:p.emoji,qty:1});
-  saveCart();
-  const nm=lang==="zh"?p.zh.name:p.en.name;
-  toast(T[lang].addedToCart(nm));
-  renderCart();
-}
-function saveCart(){
-  localStorage.setItem("ch3_cart",JSON.stringify(cart));
-  document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);
-}
+function saveC(){localStorage.setItem("ch6_cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);}
 function renderCart(){
-  const el=document.getElementById("sbItems"), ft=document.getElementById("sbFoot");
-  if(!cart.length){
-    el.innerHTML=`<div class="empty">${T[lang].cartEmpty}</div>`;
-    ft.style.display="none"; return;
-  }
+  const el=document.getElementById("sbi"),ft=document.getElementById("sbf");
+  if(!cart.length){el.innerHTML=`<div class="emp">${T[lang].empty}</div>`;ft.style.display="none";return;}
   ft.style.display="block";
   const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0);
-  document.getElementById("totAUD").textContent=`A$${tot.toFixed(2)}`;
-  document.getElementById("totCNY").textContent=`≈ ¥${cny(tot)} CNY`;
-  document.getElementById("sbFoot").querySelector(".co-btn").textContent=
-    lang==="zh"?"去结账 →":"Proceed to Checkout →";
+  document.getElementById("tAUD").textContent="A$"+tot.toFixed(2);
+  document.getElementById("tCNY").textContent="¥"+cny(tot)+" CNY";
+  document.querySelector(".cob").textContent=lang==="zh"?"去结账":"Proceed to Checkout";
   el.innerHTML=cart.map(i=>{
-    const nm=lang==="zh"?i.zhName:i.enName;
-    return `<div class="ci-row">
-      <div class="ci-thumb">${i.emoji}</div>
-      <div class="ci-info">
-        <div class="ci-name">${nm}</div>
-        <div class="ci-price">${T[lang].eachPrice(i.price.toFixed(2),cny(i.price))}</div>
-        <div class="ci-qty">
-          <button class="q-btn" onclick="chgQty(${i.id},-1)">−</button>
-          <span class="q-num">${i.qty}</span>
-          <button class="q-btn" onclick="chgQty(${i.id},1)">+</button>
-        </div>
-      </div>
-      <button class="rm" onclick="rmItem(${i.id})">✕</button>
-    </div>`;
+    const nm=lang==="zh"?i.zh:i.en;
+    return`<div class="cir"><div class="cit">${nm.substring(0,8)}</div><div class="cii"><div class="cin">${nm}</div><div class="cip">${T[lang].pr(i.price.toFixed(2),cny(i.price))}</div><div class="ciq"><button class="qb" onclick="chQ(${i.id},-1)">−</button><span class="qn">${i.qty}</span><button class="qb" onclick="chQ(${i.id},1)">+</button></div></div><button class="rm" onclick="rmI(${i.id})">Remove</button></div>`;
   }).join("");
 }
-function chgQty(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();renderCart();}
-function rmItem(id){cart=cart.filter(x=>x.id!==id);saveCart();renderCart();}
-function openCart(){document.getElementById("sidebar").classList.add("on");document.getElementById("overlay").classList.add("on");}
-function closeCart(){document.getElementById("sidebar").classList.remove("on");document.getElementById("overlay").classList.remove("on");}
-
-// ── CHECKOUT ──
-function openCheckout(){
+function chQ(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveC();renderCart();}
+function rmI(id){cart=cart.filter(x=>x.id!==id);saveC();renderCart();}
+function openCart(){document.getElementById("sbEl").classList.add("on");document.getElementById("ovl").classList.add("on");}
+function closeCart(){document.getElementById("sbEl").classList.remove("on");document.getElementById("ovl").classList.remove("on");}
+function openCO(){
   closeCart();
-  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0), sh=tot>=80?0:9.95, grand=tot+sh;
-  document.getElementById("ordSum").innerHTML=
-    cart.map(i=>{const nm=lang==="zh"?i.zhName:i.enName;
-      return `<div class="ol"><span>${i.emoji} ${nm} ×${i.qty}</span><span>A$${(i.price*i.qty).toFixed(2)}</span></div>`;
-    }).join("")+
-    `<div class="ol"><span>${T[lang].shipping}</span><span>${sh===0?T[lang].free:"A$"+sh.toFixed(2)}</span></div>`+
-    `<div class="ol tot"><span>${T[lang].total}</span><span>A$${grand.toFixed(2)} <small style="color:var(--muted)">≈ ¥${cny(grand)}</small></span></div>`;
-  // update checkout form labels
-  setLang(lang);
-  updPayAmt();
-  document.getElementById("modalBg").classList.add("on");
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,g=tot+sh;
+  document.getElementById("os").innerHTML=
+    cart.map(i=>`<div class="ol"><span>${lang==="zh"?i.zh:i.en} x${i.qty}</span><span>A$${(i.price*i.qty).toFixed(2)}</span></div>`).join("")+
+    `<div class="ol"><span>${T[lang].ship}</span><span>${sh===0?T[lang].free:"A$"+sh.toFixed(2)}</span></div>`+
+    `<div class="ol tot"><span>${T[lang].tot}</span><span>A$${g.toFixed(2)} <small style="color:var(--mu);font-weight:400">/ ¥${cny(g)}</small></span></div>`;
+  setLang(lang);updAmt();document.getElementById("mbg").classList.add("on");
 }
-function updPayAmt(){
-  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0), sh=tot>=80?0:9.95, grand=tot+sh;
+function updAmt(){
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,g=tot+sh;
   const pc=document.querySelector("input[name=pc]:checked")?.value||"AUD";
-  document.getElementById("payAmt").textContent=
-    pc==="CNY"?T[lang].youPayCNY(cny(grand),rate):T[lang].youPayAUD(grand.toFixed(2));
+  document.getElementById("pamt").innerHTML=pc==="CNY"?T[lang].pCNY(cny(g),rate):T[lang].pAUD(g.toFixed(2));
 }
-function closeCheckout(){document.getElementById("modalBg").classList.remove("on");}
+function closeCO(){document.getElementById("mbg").classList.remove("on");}
 function fmtCard(el){let v=el.value.replace(/\D/g,"").substring(0,16);el.value=v.replace(/(\d{4})/g,"$1 ").trim();}
 function fmtExp(el){let v=el.value.replace(/\D/g,"");if(v.length>=2)v=v.substring(0,2)+"/"+v.substring(2,4);el.value=v;}
-
 function placeOrder(e){
-  e.preventDefault();
-  const btn=document.getElementById("payBtn");
-  btn.textContent=T[lang].processing; btn.disabled=true;
-  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0), sh=tot>=80?0:9.95, grand=tot+sh;
+  e.preventDefault();const btn=document.getElementById("payBtn");
+  btn.textContent=T[lang].proc;btn.disabled=true;
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,g=tot+sh;
   const pc=document.querySelector("input[name=pc]:checked")?.value||"AUD";
-  const order={
-    orderId:"CH-"+Date.now(), timestamp:new Date().toISOString(),
-    customer:{name:document.getElementById("fn").value, email:document.getElementById("fe").value,
-      phone:document.getElementById("fp").value, wechat:document.getElementById("fw").value,
-      address:{street:document.getElementById("fa").value, city:document.getElementById("fc").value,
-        state:document.getElementById("fst").value, postcode:document.getElementById("fpc").value, country:"Australia"}},
-    items:cart.map(i=>({id:i.id,name:i.enName,price:i.price,qty:i.qty})),
-    totals:{subtotal:tot,shipping:sh,grandTotal:grand,currency:pc,audToCny:rate,
-      amountCNY:pc==="CNY"?parseFloat(cny(grand)):null},
-    payment:{method:"stripe",status:"pending"}
-  };
-  // TODO: fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)})
+  const order={orderId:"CH-"+Date.now(),timestamp:new Date().toISOString(),
+    customer:{name:document.getElementById("fn").value,email:document.getElementById("fe").value,
+      phone:document.getElementById("fp").value,wechat:document.getElementById("fw").value,
+      address:{street:document.getElementById("fa").value,city:document.getElementById("fc").value,
+        state:document.getElementById("fs2").value,postcode:document.getElementById("fpc").value,country:"Australia"}},
+    items:cart.map(i=>({id:i.id,name:i.en,price:i.price,qty:i.qty})),
+    totals:{subtotal:tot,shipping:sh,grandTotal:g,currency:pc,audToCny:rate,amountCNY:pc==="CNY"?parseFloat(cny(g)):null},
+    payment:{method:"stripe",status:"pending"}};
   console.log("ORDER:",JSON.stringify(order,null,2));
-  setTimeout(()=>{
-    closeCheckout();
-    document.getElementById("sucId").textContent="Order ID: "+order.orderId;
-    document.getElementById("sucBg").classList.add("on");
-    cart=[]; saveCart(); renderCart();
-    btn.textContent=T[lang].payBtn; btn.disabled=false;
-  },1800);
+  // TODO: fetch("/api/orders",{method:"POST",body:JSON.stringify(order)})
+  setTimeout(()=>{closeCO();document.getElementById("sucId").textContent="Order ID: "+order.orderId;
+    document.getElementById("sucBg").classList.add("on");cart=[];saveC();renderCart();
+    btn.textContent=T[lang].pay;btn.disabled=false;},1800);
 }
 function closeSuc(){document.getElementById("sucBg").classList.remove("on");}
-
-// ── UTILS ──
 function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});}
-function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2600);}
-
-// ── INIT ──
-fetchRate();
-renderProds("all");
-saveCart();
-renderCart();
-setLang(lang);
-</script>
-</body>
-</html>
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2500);}
+fetchRate();renderP("all");saveC();renderCart();setLang(lang);
+</script></body></html>
