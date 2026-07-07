@@ -4,21 +4,25 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Cozy Home — Premium Bedroom & Manchester</title>
-<meta name="description" content="Premium bedding, sheets, blankets and bedroom manchester. Shop Cozy Home for quality comfort."/>
+<meta name="description" content="Premium bedding, sheets, blankets and bedroom manchester."/>
 <style>
 :root{--primary:#3d2b1f;--accent:#c9956c;--bg:#faf8f5;--white:#fff;--light:#f0ebe4;--text:#2c2c2c;--muted:#888;--r:12px;--sh:0 2px 16px rgba(0,0,0,.08);--tr:.2s ease;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 a{text-decoration:none;color:inherit;}
 
-/* CURRENCY BAR */
+/* TOP BAR */
 .topbar{background:var(--primary);color:#fff;padding:6px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.78rem;}
 .topbar .live{display:flex;align-items:center;gap:6px;opacity:.9;}
 .dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.topbar-right{display:flex;align-items:center;gap:10px;}
 .cur-toggle{display:flex;background:rgba(255,255,255,.15);border-radius:50px;overflow:hidden;}
 .cur-toggle button{background:none;border:none;color:#fff;padding:4px 14px;font-size:.78rem;cursor:pointer;font-weight:600;transition:background var(--tr);}
 .cur-toggle button.on{background:var(--accent);}
+.lang-toggle{display:flex;background:rgba(255,255,255,.15);border-radius:50px;overflow:hidden;}
+.lang-toggle button{background:none;border:none;color:#fff;padding:4px 14px;font-size:.78rem;cursor:pointer;font-weight:600;transition:background var(--tr);}
+.lang-toggle button.on{background:#c9956c;}
 
 /* RATE BANNER */
 .rate-banner{background:#fff7ed;border-bottom:1px solid #f0ebe4;padding:8px 20px;text-align:center;font-size:.82rem;color:var(--primary);}
@@ -31,7 +35,7 @@ nav{background:var(--white);position:sticky;top:0;z-index:100;box-shadow:0 1px 8
 .logo{font-size:1.4rem;font-weight:700;color:var(--primary);}
 .logo span{color:var(--accent);}
 .nav-links{display:flex;gap:28px;font-size:.95rem;}
-.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover{color:var(--accent);cursor:pointer;}
 .nav-right{display:flex;align-items:center;gap:12px;}
 .cart-btn{background:var(--primary);color:#fff;border:none;border-radius:50px;padding:8px 20px;cursor:pointer;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:8px;transition:background var(--tr);}
 .cart-btn:hover{background:var(--accent);}
@@ -152,7 +156,7 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
 .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:28px;margin-bottom:28px;}
 .ft-brand p{font-size:.83rem;opacity:.65;margin-top:7px;max-width:210px;}
 .ft-col h4{font-size:.88rem;font-weight:700;margin-bottom:12px;color:var(--accent);}
-.ft-col a{display:block;font-size:.83rem;opacity:.65;margin-bottom:7px;transition:opacity var(--tr);}
+.ft-col a{display:block;font-size:.83rem;opacity:.65;margin-bottom:7px;transition:opacity var(--tr);cursor:pointer;}
 .ft-col a:hover{opacity:1;}
 .ft-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.78rem;opacity:.45;}
 
@@ -168,6 +172,8 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
   .f-row,.c3{grid-template-columns:1fr;}
   .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));}
   .card-img{height:150px;}
+  .topbar{font-size:.72rem;}
+  .topbar-right{gap:6px;}
 }
 </style>
 </head>
@@ -176,15 +182,22 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="live"><span class="dot"></span><span id="rateText">Loading rate...</span><span id="rateDate" style="opacity:.5"></span></div>
-  <div class="cur-toggle">
-    <button class="on" id="btnAUD" onclick="setCur('AUD')">AUD $</button>
-    <button id="btnCNY" onclick="setCur('CNY')">CNY ¥</button>
+  <div class="topbar-right">
+    <div class="cur-toggle">
+      <button class="on" id="btnAUD" onclick="setCur('AUD')">AUD $</button>
+      <button id="btnCNY" onclick="setCur('CNY')">CNY ¥</button>
+    </div>
+    <div class="lang-toggle">
+      <button class="on" id="btnEN" onclick="setLang('en')">EN</button>
+      <button id="btnZH" onclick="setLang('zh')">中文</button>
+    </div>
   </div>
 </div>
 
 <!-- RATE BANNER -->
 <div class="rate-banner">
-  🏦 Today's Bank Rate: <strong id="bannerRate">Loading...</strong><small id="bannerSrc"></small>
+  🏦 <span data-en="Today's Bank Rate:" data-zh="今日银行汇率:">Today's Bank Rate:</span>
+  <strong id="bannerRate">Loading...</strong><small id="bannerSrc"></small>
 </div>
 
 <!-- NAV -->
@@ -192,13 +205,16 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
   <div class="nav-inner">
     <div class="logo">Cozy <span>Home</span></div>
     <div class="nav-links" id="navLinks">
-      <a href="#shop">Shop</a>
-      <a href="#categories">Categories</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a onclick="goTo('shop')"   data-en="Shop"       data-zh="商城">Shop</a>
+      <a onclick="goTo('categories')" data-en="Categories" data-zh="分类">Categories</a>
+      <a onclick="goTo('about')"  data-en="About"      data-zh="关于我们">About</a>
+      <a onclick="goTo('contact')" data-en="Contact"   data-zh="联系我们">Contact</a>
     </div>
     <div class="nav-right">
-      <button class="cart-btn" onclick="openCart()">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 <span data-en="Cart" data-zh="购物车">Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
       <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('on')">
         <span></span><span></span><span></span>
       </div>
@@ -208,42 +224,56 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Sleep Better,<br/>Live Cosier 🛏️</h1>
-  <p>Premium sheets, blankets, pillows and bedroom manchester — crafted for comfort.</p>
+  <h1 data-en="Sleep Better,<br/>Live Cosier 🛏️" data-zh="睡得更好,<br/>生活更舒适 🛏️">Sleep Better,<br/>Live Cosier 🛏️</h1>
+  <p data-en="Premium sheets, blankets, pillows and bedroom manchester — crafted for comfort."
+     data-zh="优质床单、毯子、枕头及卧室用品——专为舒适而生。">
+     Premium sheets, blankets, pillows and bedroom manchester — crafted for comfort.</p>
   <div class="hero-btns">
-    <button class="btn-p" onclick="scrollTo('shop')">Shop Now</button>
-    <button class="btn-o" onclick="scrollTo('categories')">Browse Categories</button>
+    <button class="btn-p" onclick="goTo('shop')"       data-en="Shop Now"          data-zh="立即购买">Shop Now</button>
+    <button class="btn-o" onclick="goTo('categories')" data-en="Browse Categories" data-zh="浏览分类">Browse Categories</button>
   </div>
 </section>
 
 <!-- TRUST -->
 <div class="trust">
   <div class="trust-inner">
-    <div class="trust-item"><div class="icon">🚚</div><h4>Free Shipping</h4><p>On all orders over A$80</p></div>
-    <div class="trust-item"><div class="icon">🔄</div><h4>Easy Returns</h4><p>30-day hassle-free returns</p></div>
-    <div class="trust-item"><div class="icon">🔒</div><h4>Secure Payment</h4><p>Powered by Stripe</p></div>
-    <div class="trust-item"><div class="icon">💱</div><h4>AUD &amp; CNY</h4><p>Live daily exchange rates</p></div>
+    <div class="trust-item"><div class="icon">🚚</div>
+      <h4 data-en="Free Shipping"   data-zh="免费配送">Free Shipping</h4>
+      <p  data-en="On all orders over A$80" data-zh="订单满A$80免运费">On all orders over A$80</p>
+    </div>
+    <div class="trust-item"><div class="icon">🔄</div>
+      <h4 data-en="Easy Returns"    data-zh="轻松退换">Easy Returns</h4>
+      <p  data-en="30-day hassle-free returns" data-zh="30天无忧退换">30-day hassle-free returns</p>
+    </div>
+    <div class="trust-item"><div class="icon">🔒</div>
+      <h4 data-en="Secure Payment"  data-zh="安全支付">Secure Payment</h4>
+      <p  data-en="Powered by Stripe" data-zh="由Stripe提供支持">Powered by Stripe</p>
+    </div>
+    <div class="trust-item"><div class="icon">💱</div>
+      <h4 data-en="AUD &amp; CNY"   data-zh="澳元与人民币">AUD &amp; CNY</h4>
+      <p  data-en="Live daily exchange rates" data-zh="每日实时汇率">Live daily exchange rates</p>
+    </div>
   </div>
 </div>
 
 <!-- CATEGORIES -->
 <section class="section" id="categories">
-  <div class="sec-title">Shop by Category</div>
-  <div class="sec-sub">Find exactly what you need</div>
+  <div class="sec-title" data-en="Shop by Category" data-zh="按分类购物">Shop by Category</div>
+  <div class="sec-sub"   data-en="Find exactly what you need" data-zh="找到您所需的一切">Find exactly what you need</div>
   <div class="cats">
-    <div class="cat on" onclick="filterCat('all',this)"><div class="ci">🏠</div><h3>All Products</h3></div>
-    <div class="cat" onclick="filterCat('sheets',this)"><div class="ci">🛏️</div><h3>Bed Sheets</h3></div>
-    <div class="cat" onclick="filterCat('blankets',this)"><div class="ci">🧣</div><h3>Blankets</h3></div>
-    <div class="cat" onclick="filterCat('pillows',this)"><div class="ci">😴</div><h3>Pillows</h3></div>
-    <div class="cat" onclick="filterCat('quilts',this)"><div class="ci">🌿</div><h3>Quilts</h3></div>
-    <div class="cat" onclick="filterCat('towels',this)"><div class="ci">🛁</div><h3>Towels</h3></div>
+    <div class="cat on" onclick="filterCat('all',this)"><div class="ci">🏠</div><h3 data-en="All Products" data-zh="全部商品">All Products</h3></div>
+    <div class="cat"    onclick="filterCat('sheets',this)"><div class="ci">🛏️</div><h3 data-en="Bed Sheets"  data-zh="床单套装">Bed Sheets</h3></div>
+    <div class="cat"    onclick="filterCat('blankets',this)"><div class="ci">🧣</div><h3 data-en="Blankets"  data-zh="毯子">Blankets</h3></div>
+    <div class="cat"    onclick="filterCat('pillows',this)"><div class="ci">😴</div><h3 data-en="Pillows"    data-zh="枕头">Pillows</h3></div>
+    <div class="cat"    onclick="filterCat('quilts',this)"><div class="ci">🌿</div><h3 data-en="Quilts"      data-zh="被子">Quilts</h3></div>
+    <div class="cat"    onclick="filterCat('towels',this)"><div class="ci">🛁</div><h3 data-en="Towels"      data-zh="毛巾">Towels</h3></div>
   </div>
 </section>
 
 <!-- PRODUCTS -->
 <section class="section" id="shop" style="padding-top:0">
-  <div class="sec-title">Our Products</div>
-  <div class="sec-sub">Quality comfort for every bedroom</div>
+  <div class="sec-title" data-en="Our Products"                      data-zh="精选商品">Our Products</div>
+  <div class="sec-sub"   data-en="Quality comfort for every bedroom" data-zh="每间卧室的品质享受">Quality comfort for every bedroom</div>
   <div class="grid" id="grid"></div>
 </section>
 
@@ -252,56 +282,80 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
   <div class="ft-inner">
     <div class="ft-brand">
       <div class="logo" style="color:#fff">Cozy <span>Home</span></div>
-      <p>Premium bedroom manchester. Ships Australia-wide.</p>
+      <p data-en="Premium bedroom manchester. Ships Australia-wide." data-zh="优质卧室用品,澳大利亚全国配送。">Premium bedroom manchester. Ships Australia-wide.</p>
     </div>
-    <div class="ft-col"><h4>Shop</h4>
-      <a href="#">Bed Sheets</a><a href="#">Blankets</a><a href="#">Pillows</a><a href="#">Quilts</a><a href="#">Towels</a>
+    <div class="ft-col">
+      <h4 data-en="Shop"    data-zh="商城">Shop</h4>
+      <a data-en="Bed Sheets" data-zh="床单">Bed Sheets</a>
+      <a data-en="Blankets"   data-zh="毯子">Blankets</a>
+      <a data-en="Pillows"    data-zh="枕头">Pillows</a>
+      <a data-en="Quilts"     data-zh="被子">Quilts</a>
+      <a data-en="Towels"     data-zh="毛巾">Towels</a>
     </div>
-    <div class="ft-col"><h4>Help</h4>
-      <a href="#">Shipping Info</a><a href="#">Returns</a><a href="#">Size Guide</a><a href="#">FAQ</a>
+    <div class="ft-col">
+      <h4 data-en="Help"         data-zh="帮助">Help</h4>
+      <a data-en="Shipping Info" data-zh="配送信息">Shipping Info</a>
+      <a data-en="Returns"       data-zh="退货政策">Returns</a>
+      <a data-en="Size Guide"    data-zh="尺码指南">Size Guide</a>
+      <a data-en="FAQ"           data-zh="常见问题">FAQ</a>
     </div>
-    <div class="ft-col"><h4>Contact</h4>
-      <a href="#">hello@cozyhome.com.au</a><a href="#">1300 COZY HOME</a><a href="#">Instagram</a><a href="#">Facebook</a>
+    <div class="ft-col">
+      <h4 data-en="Contact" data-zh="联系我们">Contact</h4>
+      <a>hello@cozyhome.com.au</a>
+      <a>1300 COZY HOME</a>
+      <a data-en="Instagram" data-zh="Instagram">Instagram</a>
+      <a data-en="WeChat"    data-zh="微信">WeChat</a>
     </div>
   </div>
   <div class="ft-bot">
     <span>© 2026 Cozy Home. All rights reserved. ABN 00 000 000 000</span>
-    <span>Exchange rates via Open Exchange Rates</span>
+    <span data-en="Exchange rates via Open Exchange Rates" data-zh="汇率来源:Open Exchange Rates">Exchange rates via Open Exchange Rates</span>
   </div>
 </footer>
 
 <!-- CART SIDEBAR -->
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
 <div class="sidebar" id="sidebar">
-  <div class="sb-head"><h2>Your Cart 🛒</h2><button class="x-btn" onclick="closeCart()">✕</button></div>
-  <div class="sb-items" id="sbItems"><div class="empty">Your cart is empty 😴</div></div>
+  <div class="sb-head">
+    <h2><span data-en="Your Cart 🛒" data-zh="购物车 🛒">Your Cart 🛒</span></h2>
+    <button class="x-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="sb-items" id="sbItems"><div class="empty" data-en="Your cart is empty 😴" data-zh="购物车是空的 😴">Your cart is empty 😴</div></div>
   <div class="sb-foot" id="sbFoot" style="display:none">
-    <div class="tot-row"><span>Total</span><span id="totAUD">A$0.00</span></div>
+    <div class="tot-row">
+      <span data-en="Total" data-zh="合计">Total</span>
+      <span id="totAUD">A$0.00</span>
+    </div>
     <div class="tot-alt" id="totCNY"></div>
-    <button class="co-btn" onclick="openCheckout()">Proceed to Checkout →</button>
+    <button class="co-btn" onclick="openCheckout()" data-en="Proceed to Checkout →" data-zh="去结账 →">Proceed to Checkout →</button>
   </div>
 </div>
 
 <!-- CHECKOUT MODAL -->
 <div class="modal-bg" id="modalBg">
   <div class="modal">
-    <div class="mo-head"><h2>Checkout 🔒</h2><button class="x-btn" onclick="closeCheckout()">✕</button></div>
+    <div class="mo-head">
+      <h2 data-en="Checkout 🔒" data-zh="结账 🔒">Checkout 🔒</h2>
+      <button class="x-btn" onclick="closeCheckout()">✕</button>
+    </div>
     <div class="mo-body">
       <div class="ord-sum" id="ordSum"></div>
       <form onsubmit="placeOrder(event)">
-        <div class="fs"><h3>Contact</h3>
-          <div class="fg"><label>Full Name *</label><input id="fn" required placeholder="Jane Smith"/></div>
+        <div class="fs">
+          <h3 data-en="Contact" data-zh="联系方式">Contact</h3>
+          <div class="fg"><label data-en="Full Name *" data-zh="姓名 *">Full Name *</label><input id="fn" required placeholder="Jane Smith"/></div>
           <div class="f-row">
-            <div class="fg"><label>Email *</label><input id="fe" type="email" required placeholder="jane@email.com"/></div>
-            <div class="fg"><label>Phone</label><input id="fp" type="tel" placeholder="04XX XXX XXX"/></div>
+            <div class="fg"><label data-en="Email *" data-zh="邮箱 *">Email *</label><input id="fe" type="email" required placeholder="jane@email.com"/></div>
+            <div class="fg"><label data-en="Phone" data-zh="电话">Phone</label><input id="fp" type="tel" placeholder="04XX XXX XXX"/></div>
           </div>
-          <div class="fg"><label>WeChat ID (optional)</label><input id="fw" placeholder="WeChat ID"/></div>
+          <div class="fg"><label data-en="WeChat ID (optional)" data-zh="微信号(选填)">WeChat ID (optional)</label><input id="fw" placeholder="WeChat ID"/></div>
         </div>
-        <div class="fs"><h3>Shipping Address</h3>
-          <div class="fg"><label>Street Address *</label><input id="fa" required placeholder="123 Main Street"/></div>
+        <div class="fs">
+          <h3 data-en="Shipping Address" data-zh="收货地址">Shipping Address</h3>
+          <div class="fg"><label data-en="Street Address *" data-zh="街道地址 *">Street Address *</label><input id="fa" required placeholder="123 Main Street"/></div>
           <div class="f-row">
-            <div class="fg"><label>City *</label><input id="fc" required placeholder="Melbourne"/></div>
-            <div class="fg"><label>State *</label>
+            <div class="fg"><label data-en="City *" data-zh="城市 *">City *</label><input id="fc" required placeholder="Melbourne"/></div>
+            <div class="fg"><label data-en="State *" data-zh="州 *">State *</label>
               <select id="fst" required><option value="">Select...</option>
                 <option>VIC</option><option>NSW</option><option>QLD</option>
                 <option>WA</option><option>SA</option><option>TAS</option><option>ACT</option><option>NT</option>
@@ -309,11 +363,12 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
             </div>
           </div>
           <div class="f-row">
-            <div class="fg"><label>Postcode *</label><input id="fpc" required placeholder="3000" maxlength="4"/></div>
-            <div class="fg"><label>Country</label><input value="Australia" readonly/></div>
+            <div class="fg"><label data-en="Postcode *" data-zh="邮编 *">Postcode *</label><input id="fpc" required placeholder="3000" maxlength="4"/></div>
+            <div class="fg"><label data-en="Country" data-zh="国家">Country</label><input value="Australia" readonly/></div>
           </div>
         </div>
-        <div class="fs"><h3>Payment Currency</h3>
+        <div class="fs">
+          <h3 data-en="Payment Currency" data-zh="结账货币">Payment Currency</h3>
           <div class="cur-pick">
             <input type="radio" name="pc" id="pcAUD" value="AUD" checked onchange="updPayAmt()">
             <label for="pcAUD">🇦🇺 AUD (A$)</label>
@@ -322,16 +377,17 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
           </div>
           <div id="payAmt" style="font-size:.88rem;color:var(--muted);margin-bottom:12px;"></div>
         </div>
-        <div class="fs"><h3>Card Details</h3>
-          <div class="stripe-note">🔒 Secured by Stripe — your card details are encrypted</div>
-          <div class="fg"><label>Card Number *</label><input id="fcc" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"/></div>
+        <div class="fs">
+          <h3 data-en="Card Details" data-zh="银行卡信息">Card Details</h3>
+          <div class="stripe-note" data-en="🔒 Secured by Stripe — your card details are encrypted" data-zh="🔒 由Stripe加密保护您的银行卡信息">🔒 Secured by Stripe — your card details are encrypted</div>
+          <div class="fg"><label data-en="Card Number *" data-zh="卡号 *">Card Number *</label><input id="fcc" required placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"/></div>
           <div class="c3">
-            <div class="fg"><label>Name on Card *</label><input id="fcn" required placeholder="Jane Smith"/></div>
-            <div class="fg"><label>Expiry *</label><input id="fex" required placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"/></div>
+            <div class="fg"><label data-en="Name on Card *" data-zh="持卡人姓名 *">Name on Card *</label><input id="fcn" required placeholder="Jane Smith"/></div>
+            <div class="fg"><label data-en="Expiry *" data-zh="有效期 *">Expiry *</label><input id="fex" required placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"/></div>
             <div class="fg"><label>CVV *</label><input id="fcv" required placeholder="123" maxlength="4"/></div>
           </div>
         </div>
-        <button type="submit" class="pay-btn" id="payBtn">Place Order & Pay →</button>
+        <button type="submit" class="pay-btn" id="payBtn" data-en="Place Order & Pay →" data-zh="下单支付 →">Place Order & Pay →</button>
       </form>
     </div>
   </div>
@@ -341,11 +397,11 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
 <div class="suc-bg" id="sucBg">
   <div class="suc-box">
     <div class="si">🎉</div>
-    <h2>Order Placed!</h2>
-    <p>Thank you! Your order has been received.</p>
-    <p>A confirmation email will be sent shortly.</p>
+    <h2 data-en="Order Placed!" data-zh="订单成功!">Order Placed!</h2>
+    <p data-en="Thank you! Your order has been received." data-zh="感谢您的订购!您的订单已收到。">Thank you! Your order has been received.</p>
+    <p data-en="A confirmation email will be sent shortly." data-zh="确认邮件将很快发送。">A confirmation email will be sent shortly.</p>
     <p class="suc-id" id="sucId"></p>
-    <button onclick="closeSuc()">Continue Shopping</button>
+    <button onclick="closeSuc()" data-en="Continue Shopping" data-zh="继续购物">Continue Shopping</button>
   </div>
 </div>
 
@@ -353,119 +409,219 @@ footer{background:var(--primary);color:#fff;padding:44px 20px 22px;}
 <div class="toast" id="toast"></div>
 
 <script>
+// ── TRANSLATIONS ──
+const T = {
+  en: {
+    addedToCart: (n) => `✓ ${n} added to cart`,
+    cartEmpty: "Your cart is empty 😴",
+    processing: "Processing...",
+    payBtn: "Place Order & Pay →",
+    eachPrice: (p, c) => `A$${p} each  ≈ ¥${c}`,
+    youPayAUD: (a) => `You will pay: A$${a} AUD`,
+    youPayCNY: (c, r) => `You will pay: ¥${c} CNY  (1 AUD = ${r} CNY)`,
+    free: "FREE",
+    shipping: "Shipping",
+    total: "Total (AUD)",
+  },
+  zh: {
+    addedToCart: (n) => `✓ ${n} 已加入购物车`,
+    cartEmpty: "购物车是空的 😴",
+    processing: "处理中...",
+    payBtn: "下单支付 →",
+    eachPrice: (p, c) => `A$${p} 每件  ≈ ¥${c}`,
+    youPayAUD: (a) => `您将支付:A$${a} 澳元`,
+    youPayCNY: (c, r) => `您将支付:¥${c} 人民币  (1澳元 = ${r}元)`,
+    free: "免运费",
+    shipping: "运费",
+    total: "合计 (AUD)",
+  }
+};
+
 // ── PRODUCTS ──
-const P=[
-  {id:1,name:"Egyptian Cotton Sheet Set",cat:"sheets",price:89.95,badge:"Bestseller",emoji:"🛏️",desc:"400 thread count, silky smooth. Queen/King/Double."},
-  {id:2,name:"Bamboo Sheet Set",cat:"sheets",price:79.95,badge:"Eco",emoji:"🌿",desc:"100% organic bamboo, breathable & hypoallergenic."},
-  {id:3,name:"Fitted Sheet — King",cat:"sheets",price:49.95,badge:"",emoji:"📐",desc:"Deep pocket fitted sheet, elasticated all around."},
-  {id:4,name:"Luxury Sherpa Blanket",cat:"blankets",price:69.95,badge:"New",emoji:"🧣",desc:"Ultra-soft sherpa fleece, perfect for cool nights."},
-  {id:5,name:"Waffle Knit Throw",cat:"blankets",price:54.95,badge:"",emoji:"🍫",desc:"Stylish waffle knit throw, 100% cotton."},
-  {id:6,name:"Weighted Blanket 7kg",cat:"blankets",price:119.95,badge:"Popular",emoji:"⚖️",desc:"Therapeutic weighted blanket for deeper sleep."},
-  {id:7,name:"Memory Foam Pillow",cat:"pillows",price:59.95,badge:"Bestseller",emoji:"😴",desc:"Contour memory foam, medium-firm support."},
-  {id:8,name:"Pillowcase Set (2 pack)",cat:"pillows",price:29.95,badge:"",emoji:"🎁",desc:"Standard & king size, 300 thread count cotton."},
-  {id:9,name:"Duck Down Pillow",cat:"pillows",price:74.95,badge:"Premium",emoji:"🪶",desc:"Soft duck down fill, naturally breathable."},
-  {id:10,name:"All-Season Quilt 400GSM",cat:"quilts",price:99.95,badge:"Bestseller",emoji:"🌸",desc:"Microfibre fill, suitable for all seasons."},
-  {id:11,name:"Winter Goose Down Doona",cat:"quilts",price:189.95,badge:"Premium",emoji:"❄️",desc:"700GSM goose down, supremely warm."},
-  {id:12,name:"Summer Bamboo Quilt",cat:"quilts",price:89.95,badge:"New",emoji:"☀️",desc:"Lightweight bamboo fill, ideal for warm months."},
-  {id:13,name:"Bath Towel Set (4 pack)",cat:"towels",price:64.95,badge:"",emoji:"🛁",desc:"600GSM Egyptian cotton, ultra absorbent."},
-  {id:14,name:"Luxury Hand Towel Set",cat:"towels",price:39.95,badge:"",emoji:"🤲",desc:"Soft and quick-dry, 500GSM cotton."},
-  {id:15,name:"Beach Towel — Oversized",cat:"towels",price:44.95,badge:"Summer",emoji:"🏖️",desc:"180x100cm, sand-free microfibre."},
-  {id:16,name:"Bed Runner & Cushion Set",cat:"sheets",price:55.95,badge:"New",emoji:"💛",desc:"Decorative bed runner + 2 matching cushion covers."},
+const P = [
+  {id:1,  en:{name:"Egyptian Cotton Sheet Set",   desc:"400 thread count, silky smooth. Queen/King/Double."},
+          zh:{name:"埃及棉床单套装",               desc:"400支,丝滑细腻,适合皇后/大/双人床。"},
+          cat:"sheets",   price:89.95, badge:"Bestseller", emoji:"🛏️"},
+  {id:2,  en:{name:"Bamboo Sheet Set",             desc:"100% organic bamboo, breathable & hypoallergenic."},
+          zh:{name:"竹纤维床单套装",               desc:"100%有机竹纤维,透气低敏。"},
+          cat:"sheets",   price:79.95, badge:"Eco",        emoji:"🌿"},
+  {id:3,  en:{name:"Fitted Sheet — King",           desc:"Deep pocket fitted sheet, elasticated all around."},
+          zh:{name:"床笠(King尺寸)",              desc:"深袋设计,四周松紧,贴合床垫。"},
+          cat:"sheets",   price:49.95, badge:"",           emoji:"📐"},
+  {id:4,  en:{name:"Luxury Sherpa Blanket",         desc:"Ultra-soft sherpa fleece, perfect for cool nights."},
+          zh:{name:"奢华雪巴绒毯",                  desc:"超柔软雪巴绒,凉夜必备。"},
+          cat:"blankets", price:69.95, badge:"New",        emoji:"🧣"},
+  {id:5,  en:{name:"Waffle Knit Throw",             desc:"Stylish waffle knit throw, 100% cotton."},
+          zh:{name:"华夫格针织毯",                  desc:"时尚华夫格设计,100%纯棉。"},
+          cat:"blankets", price:54.95, badge:"",           emoji:"🍫"},
+  {id:6,  en:{name:"Weighted Blanket 7kg",          desc:"Therapeutic weighted blanket for deeper sleep."},
+          zh:{name:"重力毯 7公斤",                  desc:"助眠重力毯,睡眠更深沉。"},
+          cat:"blankets", price:119.95,badge:"Popular",    emoji:"⚖️"},
+  {id:7,  en:{name:"Memory Foam Pillow",            desc:"Contour memory foam, medium-firm support."},
+          zh:{name:"记忆棉枕头",                    desc:"曲线记忆棉,中等硬度支撑。"},
+          cat:"pillows",  price:59.95, badge:"Bestseller", emoji:"😴"},
+  {id:8,  en:{name:"Pillowcase Set (2 pack)",       desc:"Standard & king size, 300 thread count cotton."},
+          zh:{name:"枕套套装(2件)",               desc:"标准/大号,300支纯棉。"},
+          cat:"pillows",  price:29.95, badge:"",           emoji:"🎁"},
+  {id:9,  en:{name:"Duck Down Pillow",              desc:"Soft duck down fill, naturally breathable."},
+          zh:{name:"鸭绒枕头",                      desc:"柔软鸭绒填充,天然透气。"},
+          cat:"pillows",  price:74.95, badge:"Premium",    emoji:"🪶"},
+  {id:10, en:{name:"All-Season Quilt 400GSM",       desc:"Microfibre fill, suitable for all seasons."},
+          zh:{name:"四季被 400GSM",                 desc:"超细纤维填充,四季适用。"},
+          cat:"quilts",   price:99.95, badge:"Bestseller", emoji:"🌸"},
+  {id:11, en:{name:"Winter Goose Down Doona",       desc:"700GSM goose down, supremely warm."},
+          zh:{name:"冬季鹅绒被",                    desc:"700GSM鹅绒填充,极致保暖。"},
+          cat:"quilts",   price:189.95,badge:"Premium",    emoji:"❄️"},
+  {id:12, en:{name:"Summer Bamboo Quilt",           desc:"Lightweight bamboo fill, ideal for warm months."},
+          zh:{name:"夏季竹纤维薄被",               desc:"轻盈竹纤维填充,夏季必备。"},
+          cat:"quilts",   price:89.95, badge:"New",        emoji:"☀️"},
+  {id:13, en:{name:"Bath Towel Set (4 pack)",       desc:"600GSM Egyptian cotton, ultra absorbent."},
+          zh:{name:"浴巾套装(4件)",               desc:"600GSM埃及棉,超强吸水。"},
+          cat:"towels",   price:64.95, badge:"",           emoji:"🛁"},
+  {id:14, en:{name:"Luxury Hand Towel Set",         desc:"Soft and quick-dry, 500GSM cotton."},
+          zh:{name:"奢华洗手巾套装",               desc:"柔软速干,500GSM纯棉。"},
+          cat:"towels",   price:39.95, badge:"",           emoji:"🤲"},
+  {id:15, en:{name:"Beach Towel — Oversized",        desc:"180x100cm, sand-free microfibre."},
+          zh:{name:"超大沙滩巾",                    desc:"180x100cm,防沙超细纤维。"},
+          cat:"towels",   price:44.95, badge:"Summer",     emoji:"🏖️"},
+  {id:16, en:{name:"Bed Runner & Cushion Set",      desc:"Decorative bed runner + 2 matching cushion covers."},
+          zh:{name:"床旗抱枕套装",                  desc:"装饰床旗 + 2个配套抱枕套。"},
+          cat:"sheets",   price:55.95, badge:"New",        emoji:"💛"},
 ];
 
+// ── STATE ──
+let lang = localStorage.getItem("ch_lang") || "en";
+let curDisp = "AUD";
+let rate = 4.75, rateSrc = "estimated";
+let curCat = "all";
+let cart = JSON.parse(localStorage.getItem("ch3_cart") || "[]");
+
+// ── LANGUAGE ──
+function setLang(l) {
+  lang = l;
+  localStorage.setItem("ch_lang", l);
+  document.getElementById("btnEN").classList.toggle("on", l === "en");
+  document.getElementById("btnZH").classList.toggle("on", l === "zh");
+  // Update all data-en/data-zh elements
+  document.querySelectorAll("[data-en]").forEach(el => {
+    const txt = el.getAttribute("data-" + l);
+    if (txt) el.innerHTML = txt;
+  });
+  renderProds(curCat);
+  renderCart();
+}
+
 // ── EXCHANGE RATE ──
-let rate=4.75,rateSrc="estimated";
-async function fetchRate(){
-  const KEY="ch_rate",DATE="ch_date",today=new Date().toISOString().slice(0,10);
-  const cd=localStorage.getItem(DATE),cr=parseFloat(localStorage.getItem(KEY));
-  if(cd===today&&cr>0){rate=cr;rateSrc="cached";updateRateUI(today);return;}
-  try{
+async function fetchRate() {
+  const KEY="ch_rate", DATE="ch_date", today=new Date().toISOString().slice(0,10);
+  const cd=localStorage.getItem(DATE), cr=parseFloat(localStorage.getItem(KEY));
+  if(cd===today && cr>0){rate=cr; rateSrc="cached"; updateRateUI(today); return;}
+  try {
     const r=await fetch("https://open.er-api.com/v6/latest/AUD");
     const d=await r.json();
-    if(d.rates&&d.rates.CNY){rate=parseFloat(d.rates.CNY.toFixed(4));rateSrc="Open Exchange Rates";
-      localStorage.setItem(KEY,rate);localStorage.setItem(DATE,today);updateRateUI(today);return;}
-  }catch(e){}
-  try{
+    if(d.rates && d.rates.CNY){
+      rate=parseFloat(d.rates.CNY.toFixed(4)); rateSrc="Open Exchange Rates";
+      localStorage.setItem(KEY,rate); localStorage.setItem(DATE,today);
+      updateRateUI(today); return;
+    }
+  } catch(e){}
+  try {
     const r=await fetch("https://api.exchangerate.host/latest?base=AUD&symbols=CNY");
     const d=await r.json();
-    if(d.rates&&d.rates.CNY){rate=parseFloat(d.rates.CNY.toFixed(4));rateSrc="ExchangeRate.host";
-      localStorage.setItem(KEY,rate);localStorage.setItem(DATE,today);updateRateUI(today);return;}
-  }catch(e){}
-  if(cr>0){rate=cr;rateSrc="last known";}
+    if(d.rates && d.rates.CNY){
+      rate=parseFloat(d.rates.CNY.toFixed(4)); rateSrc="ExchangeRate.host";
+      localStorage.setItem(KEY,rate); localStorage.setItem(DATE,today);
+      updateRateUI(today); return;
+    }
+  } catch(e){}
+  if(cr>0){rate=cr; rateSrc="last known";}
   updateRateUI(today);
 }
 function cny(a){return(a*rate).toFixed(2);}
 function updateRateUI(dt){
-  const buy=(rate*.993).toFixed(4),sell=(rate*1.007).toFixed(4);
+  const buy=(rate*.993).toFixed(4), sell=(rate*1.007).toFixed(4);
   document.getElementById("rateText").textContent=`A$1 = ¥${rate.toFixed(4)} CNY`;
   document.getElementById("rateDate").textContent=`· ${dt.slice(0,10)}`;
-  document.getElementById("bannerRate").innerHTML=`A$1 = ¥${rate.toFixed(4)} &nbsp;|&nbsp; Bank Buy: ¥${buy} &nbsp;|&nbsp; Bank Sell: ¥${sell}`;
+  document.getElementById("bannerRate").innerHTML=
+    `A$1 = ¥${rate.toFixed(4)} &nbsp;|&nbsp; `+
+    (lang==="zh"?"买入":"Bank Buy")+`: ¥${buy} &nbsp;|&nbsp; `+
+    (lang==="zh"?"卖出":"Bank Sell")+`: ¥${sell}`;
   document.getElementById("bannerSrc").textContent=`· ${rateSrc}`;
-  renderProds(curCat);renderCart();
+  renderProds(curCat); renderCart();
 }
 
-// ── CURRENCY TOGGLE ──
-let curDisp="AUD";
+// ── CURRENCY ──
 function setCur(c){
   curDisp=c;
   document.getElementById("btnAUD").classList.toggle("on",c==="AUD");
   document.getElementById("btnCNY").classList.toggle("on",c==="CNY");
-  renderProds(curCat);renderCart();
+  renderProds(curCat); renderCart();
 }
 function fmt(a){return curDisp==="CNY"?`¥${cny(a)}`:`A$${a.toFixed(2)}`;}
 function fmtAlt(a){return curDisp==="CNY"?`≈ A$${a.toFixed(2)}`:`≈ ¥${cny(a)} CNY`;}
 
 // ── PRODUCTS ──
-let curCat="all";
 function renderProds(cat){
   curCat=cat;
   const list=cat==="all"?P:P.filter(p=>p.cat===cat);
-  document.getElementById("grid").innerHTML=list.map(p=>`
-    <div class="card">
-      <div class="card-img" id="ci${p.id}"><span>${p.emoji}</span></div>
+  document.getElementById("grid").innerHTML=list.map(p=>{
+    const nm=p[lang]?p[lang].name:p.en.name;
+    const ds=p[lang]?p[lang].desc:p.en.desc;
+    const atcTxt=lang==="zh"?"加入购物车":"Add to Cart";
+    return `<div class="card">
+      <div class="card-img">${p.emoji}</div>
       <div class="card-body">
         ${p.badge?`<span class="badge">${p.badge}</span>`:""}
-        <div class="card-name">${p.name}</div>
-        <div class="card-desc">${p.desc}</div>
+        <div class="card-name">${nm}</div>
+        <div class="card-desc">${ds}</div>
         <div class="card-foot">
           <div class="price-wrap">
             <span class="price-main">${fmt(p.price)}</span>
             <span class="price-alt">${fmtAlt(p.price)}</span>
           </div>
-          <button class="atc" onclick="addCart(${p.id})">Add to Cart</button>
+          <button class="atc" onclick="addCart(${p.id})">${atcTxt}</button>
         </div>
       </div>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 }
 function filterCat(c,el){
   document.querySelectorAll(".cat").forEach(x=>x.classList.remove("on"));
-  el.classList.add("on");renderProds(c);
+  el.classList.add("on"); renderProds(c);
 }
 
 // ── CART ──
-let cart=JSON.parse(localStorage.getItem("ch2_cart")||"[]");
 function addCart(id){
-  const p=P.find(x=>x.id===id),ex=cart.find(x=>x.id===id);
-  if(ex)ex.qty++;else cart.push({...p,qty:1});
-  saveCart();toast(`✓ ${p.name} added to cart`);renderCart();
+  const p=P.find(x=>x.id===id), ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++; else cart.push({id:p.id,enName:p.en.name,zhName:p.zh.name,price:p.price,emoji:p.emoji,qty:1});
+  saveCart();
+  const nm=lang==="zh"?p.zh.name:p.en.name;
+  toast(T[lang].addedToCart(nm));
+  renderCart();
 }
 function saveCart(){
-  localStorage.setItem("ch2_cart",JSON.stringify(cart));
+  localStorage.setItem("ch3_cart",JSON.stringify(cart));
   document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);
 }
 function renderCart(){
-  const el=document.getElementById("sbItems"),ft=document.getElementById("sbFoot");
-  if(!cart.length){el.innerHTML="<div class='empty'>Your cart is empty 😴</div>";ft.style.display="none";return;}
+  const el=document.getElementById("sbItems"), ft=document.getElementById("sbFoot");
+  if(!cart.length){
+    el.innerHTML=`<div class="empty">${T[lang].cartEmpty}</div>`;
+    ft.style.display="none"; return;
+  }
   ft.style.display="block";
   const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0);
   document.getElementById("totAUD").textContent=`A$${tot.toFixed(2)}`;
   document.getElementById("totCNY").textContent=`≈ ¥${cny(tot)} CNY`;
-  el.innerHTML=cart.map(i=>`
-    <div class="ci-row">
-      <div class="ci-thumb"><span>${i.emoji}</span></div>
+  document.getElementById("sbFoot").querySelector(".co-btn").textContent=
+    lang==="zh"?"去结账 →":"Proceed to Checkout →";
+  el.innerHTML=cart.map(i=>{
+    const nm=lang==="zh"?i.zhName:i.enName;
+    return `<div class="ci-row">
+      <div class="ci-thumb">${i.emoji}</div>
       <div class="ci-info">
-        <div class="ci-name">${i.name}</div>
-        <div class="ci-price">A$${i.price.toFixed(2)} each &nbsp;≈ ¥${cny(i.price)}</div>
+        <div class="ci-name">${nm}</div>
+        <div class="ci-price">${T[lang].eachPrice(i.price.toFixed(2),cny(i.price))}</div>
         <div class="ci-qty">
           <button class="q-btn" onclick="chgQty(${i.id},-1)">−</button>
           <span class="q-num">${i.qty}</span>
@@ -473,7 +629,8 @@ function renderCart(){
         </div>
       </div>
       <button class="rm" onclick="rmItem(${i.id})">✕</button>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 }
 function chgQty(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();renderCart();}
 function rmItem(id){cart=cart.filter(x=>x.id!==id);saveCart();renderCart();}
@@ -483,18 +640,23 @@ function closeCart(){document.getElementById("sidebar").classList.remove("on");d
 // ── CHECKOUT ──
 function openCheckout(){
   closeCart();
-  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,grand=tot+sh;
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0), sh=tot>=80?0:9.95, grand=tot+sh;
   document.getElementById("ordSum").innerHTML=
-    cart.map(i=>`<div class="ol"><span>${i.emoji} ${i.name} ×${i.qty}</span><span>A$${(i.price*i.qty).toFixed(2)}</span></div>`).join("")+
-    `<div class="ol"><span>Shipping</span><span>${sh===0?"FREE":"A$"+sh.toFixed(2)}</span></div>`+
-    `<div class="ol tot"><span>Total (AUD)</span><span>A$${grand.toFixed(2)} <small style="color:var(--muted)">≈ ¥${cny(grand)}</small></span></div>`;
+    cart.map(i=>{const nm=lang==="zh"?i.zhName:i.enName;
+      return `<div class="ol"><span>${i.emoji} ${nm} ×${i.qty}</span><span>A$${(i.price*i.qty).toFixed(2)}</span></div>`;
+    }).join("")+
+    `<div class="ol"><span>${T[lang].shipping}</span><span>${sh===0?T[lang].free:"A$"+sh.toFixed(2)}</span></div>`+
+    `<div class="ol tot"><span>${T[lang].total}</span><span>A$${grand.toFixed(2)} <small style="color:var(--muted)">≈ ¥${cny(grand)}</small></span></div>`;
+  // update checkout form labels
+  setLang(lang);
   updPayAmt();
   document.getElementById("modalBg").classList.add("on");
 }
 function updPayAmt(){
-  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,grand=tot+sh;
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0), sh=tot>=80?0:9.95, grand=tot+sh;
   const pc=document.querySelector("input[name=pc]:checked")?.value||"AUD";
-  document.getElementById("payAmt").textContent=pc==="CNY"?`You will pay: ¥${cny(grand)} CNY (1 AUD = ${rate} CNY)`:`You will pay: A$${grand.toFixed(2)} AUD`;
+  document.getElementById("payAmt").textContent=
+    pc==="CNY"?T[lang].youPayCNY(cny(grand),rate):T[lang].youPayAUD(grand.toFixed(2));
 }
 function closeCheckout(){document.getElementById("modalBg").classList.remove("on");}
 function fmtCard(el){let v=el.value.replace(/\D/g,"").substring(0,16);el.value=v.replace(/(\d{4})/g,"$1 ").trim();}
@@ -503,17 +665,16 @@ function fmtExp(el){let v=el.value.replace(/\D/g,"");if(v.length>=2)v=v.substrin
 function placeOrder(e){
   e.preventDefault();
   const btn=document.getElementById("payBtn");
-  btn.textContent="Processing...";btn.disabled=true;
-  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0),sh=tot>=80?0:9.95,grand=tot+sh;
+  btn.textContent=T[lang].processing; btn.disabled=true;
+  const tot=cart.reduce((s,i)=>s+(i.price*i.qty),0), sh=tot>=80?0:9.95, grand=tot+sh;
   const pc=document.querySelector("input[name=pc]:checked")?.value||"AUD";
-  // ── DATABASE HOOK ── replace fetch below with your real API endpoint
   const order={
-    orderId:"CH-"+Date.now(),timestamp:new Date().toISOString(),
-    customer:{name:document.getElementById("fn").value,email:document.getElementById("fe").value,
-      phone:document.getElementById("fp").value,wechat:document.getElementById("fw").value,
-      address:{street:document.getElementById("fa").value,city:document.getElementById("fc").value,
-        state:document.getElementById("fst").value,postcode:document.getElementById("fpc").value,country:"Australia"}},
-    items:cart.map(i=>({id:i.id,name:i.name,price:i.price,qty:i.qty})),
+    orderId:"CH-"+Date.now(), timestamp:new Date().toISOString(),
+    customer:{name:document.getElementById("fn").value, email:document.getElementById("fe").value,
+      phone:document.getElementById("fp").value, wechat:document.getElementById("fw").value,
+      address:{street:document.getElementById("fa").value, city:document.getElementById("fc").value,
+        state:document.getElementById("fst").value, postcode:document.getElementById("fpc").value, country:"Australia"}},
+    items:cart.map(i=>({id:i.id,name:i.enName,price:i.price,qty:i.qty})),
     totals:{subtotal:tot,shipping:sh,grandTotal:grand,currency:pc,audToCny:rate,
       amountCNY:pc==="CNY"?parseFloat(cny(grand)):null},
     payment:{method:"stripe",status:"pending"}
@@ -524,18 +685,22 @@ function placeOrder(e){
     closeCheckout();
     document.getElementById("sucId").textContent="Order ID: "+order.orderId;
     document.getElementById("sucBg").classList.add("on");
-    cart=[];saveCart();renderCart();
-    btn.textContent="Place Order & Pay →";btn.disabled=false;
+    cart=[]; saveCart(); renderCart();
+    btn.textContent=T[lang].payBtn; btn.disabled=false;
   },1800);
 }
 function closeSuc(){document.getElementById("sucBg").classList.remove("on");}
 
 // ── UTILS ──
-function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:"smooth"});}
+function goTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});}
 function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2600);}
 
 // ── INIT ──
-fetchRate();renderProds("all");saveCart();renderCart();
+fetchRate();
+renderProds("all");
+saveCart();
+renderCart();
+setLang(lang);
 </script>
 </body>
 </html>
