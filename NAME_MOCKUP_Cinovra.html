@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cinovra — Name Mockup Preview</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080808;--card:#141414;--gold:#d4a017;--gold2:#f0c040;--gold3:#fff0a0;--text:#f5f0e8;--muted:#888880;--border:rgba(212,160,23,0.2);--border2:rgba(212,160,23,0.08)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+.bg-glow{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(160px)}
+.glow-1{width:700px;height:700px;background:rgba(212,160,23,0.07);top:-200px;left:-200px}
+.glow-2{width:500px;height:500px;background:rgba(212,160,23,0.05);bottom:5%;right:-100px}
+.glow-3{width:800px;height:400px;background:rgba(212,160,23,0.04);top:30%;left:10%}
+
+/* MOCKUP BANNER */
+.mockup-banner{position:relative;z-index:10;background:#1a1500;border-bottom:1px solid var(--border);color:var(--gold2);text-align:center;padding:10px 20px;font-size:0.8rem;font-weight:700;letter-spacing:0.05em}
+
+/* NAV */
+nav{position:sticky;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 64px;background:rgba(8,8,8,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:900;letter-spacing:-0.5px;color:var(--text)}
+.logo span{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),#b8860b);color:#080808;border:none;padding:10px 26px;border-radius:6px;font-weight:700;font-size:0.875rem;cursor:pointer;transition:opacity 0.2s,transform 0.2s}
+.nav-cta:hover{opacity:0.9;transform:translateY(-1px)}
+@media(max-width:768px){nav{padding:16px 20px}.nav-links{display:none}}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 40px 60px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,0.1);border:1px solid var(--border);border-radius:100px;padding:7px 20px;font-size:0.75rem;font-weight:700;color:var(--gold2);margin-bottom:36px;letter-spacing:0.1em;text-transform:uppercase}
+.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,7vw,6.2rem);font-weight:900;line-height:1.02;letter-spacing:-3px;margin-bottom:28px}
+.gold-text{background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,var(--gold3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:44px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#b8860b);color:#080808;padding:16px 38px;border-radius:8px;font-weight:800;font-size:1rem;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 0 40px rgba(212,160,23,0.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(212,160,23,0.5)}
+.btn-outline{background:transparent;color:var(--text);padding:16px 38px;border-radius:8px;font-weight:600;font-size:1rem;border:1px solid rgba(212,160,23,0.3);cursor:pointer;transition:border-color 0.2s,background 0.2s}
+.btn-outline:hover{border-color:var(--gold);background:rgba(212,160,23,0.06)}
+
+/* REEL STRIP */
+.reel-strip{position:relative;z-index:1;width:100%;overflow:hidden;padding:32px 0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.reel-track{display:flex;gap:16px;animation:scroll-left 30s linear infinite;width:max-content}
+@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reel-item{flex-shrink:0;width:180px;height:88px;border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--muted);background:var(--card);gap:8px}
+.reel-item .icon{font-size:1.3rem}
+
+/* NAME RATIONALE CARD */
+.rationale{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:90px 32px}
+.rationale h2{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:18px;text-align:center}
+.rationale-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+.r-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px}
+.r-card h4{font-size:0.85rem;font-weight:700;color:var(--gold2);margin-bottom:8px;letter-spacing:0.03em}
+.r-card p{font-size:0.85rem;color:var(--muted);line-height:1.6}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:30px 64px;text-align:center;font-size:0.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="mockup-banner">⚠ NAME MOCKUP — For internal review only — "Cinovra" is a candidate name, not yet trademark/ASIC-cleared</div>
+
+<div class="bg-glow glow-1"></div>
+<div class="bg-glow glow-2"></div>
+<div class="bg-glow glow-3"></div>
+
+<nav>
+  <div class="logo">Cin<span>ovra</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Demo</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Team</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Get Early Access</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">✦ Fully AI-Generated Films</div>
+  <h1>Where <span class="gold-text">Artificial Intelligence</span><br/>Becomes Cinema</h1>
+  <p>Cinovra is a next-generation studio creating fully AI-generated short films and videos — from script to screen, powered entirely by artificial intelligence.</p>
+  <div class="hero-btns">
+    <button class="btn-gold">▶ Watch Our Demo Reel</button>
+    <button class="btn-outline">View Pricing →</button>
+  </div>
+</section>
+
+<div class="reel-strip">
+  <div class="reel-track">
+    <div class="reel-item"><span class="icon">🎬</span>AI Screenwriting</div>
+    <div class="reel-item"><span class="icon">🎨</span>AI Storyboarding</div>
+    <div class="reel-item"><span class="icon">🗣️</span>AI Voiceover</div>
+    <div class="reel-item"><span class="icon">🎭</span>AI Characters</div>
+    <div class="reel-item"><span class="icon">🌅</span>AI Scene Gen</div>
+    <div class="reel-item"><span class="icon">🎵</span>AI Soundtrack</div>
+    <div class="reel-item"><span class="icon">✂️</span>AI Editing</div>
+    <div class="reel-item"><span class="icon">📽️</span>AI VFX</div>
+    <div class="reel-item"><span class="icon">🎬</span>AI Screenwriting</div>
+    <div class="reel-item"><span class="icon">🎨</span>AI Storyboarding</div>
+    <div class="reel-item"><span class="icon">🗣️</span>AI Voiceover</div>
+    <div class="reel-item"><span class="icon">🎭</span>AI Characters</div>
+    <div class="reel-item"><span class="icon">🌅</span>AI Scene Gen</div>
+    <div class="reel-item"><span class="icon">🎵</span>AI Soundtrack</div>
+    <div class="reel-item"><span class="icon">✂️</span>AI Editing</div>
+    <div class="reel-item"><span class="icon">📽️</span>AI VFX</div>
+  </div>
+</div>
+
+<section class="rationale">
+  <h2>Why <span class="gold-text">Cinovra</span>?</h2>
+  <div class="rationale-grid">
+    <div class="r-card"><h4>SOUND</h4><p>"Cin" (cinema) + invented "-ovra" ending — reads instantly as film-related, without spelling out "AI" like most competitors.</p></div>
+    <div class="r-card"><h4>DISTINCTIVENESS</h4><p>Not a dictionary word, not a common "[Word]AI Studio" pattern. Domain confirmed available (raw check only — trademark/ASIC clearance still required).</p></div>
+    <div class="r-card"><h4>VISUAL FIT</h4><p>Drops straight into the existing dark/gold cinematic design system — zero rebuild needed beyond the logo text.</p></div>
+    <div class="r-card"><h4>SCALABILITY</h4><p>Works as company name, studio brand, and product name ("Cinovra Pipeline", "Cinovra Studio") without feeling redundant.</p></div>
+  </div>
+</section>
+
+<footer>Cinovra — Name Mockup Preview · Generated 13 Jul 2026 · Not for public distribution</footer>
+
+</body></html>
